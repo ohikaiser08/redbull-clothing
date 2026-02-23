@@ -23,6 +23,7 @@ body{
 
 /* HEADER */
 header{
+   header{
     position:fixed;
     width:100%;
     top:0;
@@ -30,28 +31,22 @@ header{
     justify-content:space-between;
     align-items:center;
     padding:15px 60px;
-    background:rgba(255,255,255,0.95);
-    backdrop-filter:blur(8px);
+    background:linear-gradient(90deg,#111,#1c1c1c);
     border-bottom:2px solid #C91414;
     z-index:1000;
-}
-
-header img{
-    height:60px;
 }
 
 nav a{
     margin-left:30px;
     text-decoration:none;
     font-weight:600;
-    color:#111;
+    color:#fff;
     transition:.3s;
 }
 
 nav a:hover{
-    color:#C91414;
+    color:#ff3c3c;
 }
-
 /* HERO */
 .hero{
     height:100vh;
@@ -60,23 +55,31 @@ nav a:hover{
     align-items:center;
     text-align:center;
     flex-direction:column;
-    background:linear-gradient(135deg,#F4D9A7,#FFF8EC);
     padding-top:80px;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1400&q=80');
+
+    background-size:cover;
+    background-position:center;
+    color:#fff;
 }
 
 .hero h1{
     font-size:65px;
     font-weight:700;
+    color:#fff;
 }
 
 .hero span{
-    color:#C91414;
+    color:#ff3c3c;
 }
 
 .hero p{
     margin-top:15px;
     font-size:20px;
-    color:#444;
+    color:#ddd;
 }
 
 .btn{
