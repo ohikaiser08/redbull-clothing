@@ -1,272 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RedBull Clothing</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedBull Clothing</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+  <style>
+    :root{
+      --bg:#FFF8EC;
+      --text:#111;
+      --muted:#444;
+      --red:#C91414;
+      --red2:#ff3c3c;
+      --card:#ffffff;
+      --shadow:0 15px 35px rgba(0,0,0,0.10);
+      --radius:20px;
+    }
 
-body{
-    background:#FFF8EC;
-    color:#111;
-    scroll-behavior:smooth;
-}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);}
 
-/* HEADER */
-header{
-   header{
-    position:fixed;
-    width:100%;
-    top:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 60px;
-    background:linear-gradient(90deg,#111,#1c1c1c);
-    border-bottom:2px solid #C91414;
-    z-index:1000;
-}
+    /* ====== HEADER ====== */
+    header{
+      position:fixed;
+      inset:0 0 auto 0;
+      height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 60px;
+      background:linear-gradient(90deg,#111,#1c1c1c);
+      border-bottom:2px solid var(--red);
+      z-index:9999;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:160px;
+    }
+    .brand img{
+      height:58px;
+      width:auto;
+      display:block;
+      border-radius:10px;
+      background:#fff;
+      padding:4px; /* logo looks clean */
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+    nav a{
+      text-decoration:none;
+      font-weight:600;
+      color:#fff;
+      transition:0.25s;
+      padding:8px 10px;
+      border-radius:10px;
+    }
+    nav a:hover{color:var(--red2); background:rgba(255,255,255,0.06);}
 
-nav a{
-    margin-left:30px;
-    text-decoration:none;
-    font-weight:600;
-    color:#fff;
-    transition:.3s;
-}
+    /* Mobile menu */
+    .menu-btn{
+      display:none;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(255,255,255,0.06);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+    }
 
-nav a:hover{
-    color:#ff3c3c;
-}
-/* HERO */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:140px 20px 90px;
-  overflow:hidden;
-}
+    /* ====== HERO ====== */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      padding:140px 20px 90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
 
-/* Background layer */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)),
-    url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  transform:scale(1.05);
-  z-index:0;
-}
+    /* background layer (never breaks) */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)),
+        url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      transform:scale(1.05);
+      z-index:0;
+    }
 
-/* Content layer */
-.hero > *{
-  position:relative;
-  z-index:1;
-}
-.hero h1{
-    font-size:52px;
-    font-weight:700;
-    color:white;
-    text-shadow:0 10px 30px rgba(0,0,0,0.55);
-max-width:900px;
-line-height:1.1;
-}
+    /* subtle glow vignette */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:radial-gradient(circle at 50% 40%, rgba(255,0,0,0.12), transparent 55%);
+      z-index:0;
+      pointer-events:none;
+    }
 
-.hero span{
-    color:#ff3c3c;
-}
-}
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      max-width:980px;
+    }
 
-.hero p{
-  margin-top:14px;
-  font-size:18px;
-  color:#eaeaea;
-  max-width:720px;
-  text-shadow:0 10px 30px rgba(0,0,0,0.45);
-}
+    .hero h1{
+      font-size:56px;
+      line-height:1.05;
+      font-weight:800;
+      color:#fff;
+      text-shadow:0 12px 40px rgba(0,0,0,0.55);
+      letter-spacing:-0.5px;
+    }
+    .hero h1 span{ color:var(--red2); }
 
-.btn{
-    margin-top:30px;
-    padding:14px 35px;
-    border:none;
-    border-radius:40px;
-    font-weight:600;
-    font-size:16px;
-    cursor:pointer;
-    background:#C91414;
-    color:#fff;
-    transition:.3s;
-}
+    .hero p{
+      margin:14px auto 0;
+      font-size:18px;
+      color:#ececec;
+      max-width:760px;
+      text-shadow:0 12px 35px rgba(0,0,0,0.45);
+    }
 
-.btn:hover{
-    transform:scale(1.03);
-}
+    .hero-actions{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
 
-/* SECTION */
-.section{
-    padding:100px 80px;
-}
+    .btn{
+      padding:14px 26px;
+      border:none;
+      border-radius:999px;
+      font-weight:700;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+    }
+    .btn-primary{
+      background:var(--red);
+      color:#fff;
+      box-shadow:0 16px 35px rgba(201,20,20,0.32);
+    }
+    .btn-primary:hover{ transform:translateY(-2px); }
+    .btn-ghost{
+      background:rgba(255,255,255,0.10);
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover{ transform:translateY(-2px); }
 
-.section h2{
-    font-size:40px;
-    margin-bottom:40px;
-    text-align:center;
-}
+    /* ====== SECTION ====== */
+    .section{
+      padding:92px 70px;
+    }
+    .section-title{
+      text-align:center;
+      font-size:38px;
+      margin-bottom:40px;
+      letter-spacing:-0.4px;
+    }
+    .section-sub{
+      text-align:center;
+      margin:-26px auto 40px;
+      color:var(--muted);
+      max-width:760px;
+    }
 
-/* PRODUCTS GRID */
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
-}
+    /* ====== GRID ====== */
+    .products{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:26px;
+      max-width:1200px;
+      margin:0 auto;
+    }
 
-.product{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(0,0,0,0.08);
-    transition:.3s;
-}
+    .product{
+      background:var(--card);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:0.25s;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .product:hover{ transform:translateY(-8px); }
 
-.product:hover{
-    transform:translateY(-10px);
-}
+    .product img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      display:block;
+    }
+    .product-info{
+      padding:18px 18px 20px;
+    }
+    .product-info h3{
+      font-size:18px;
+      margin-bottom:8px;
+    }
+    .price{
+      font-weight:800;
+      color:var(--red);
+      font-size:16px;
+    }
 
-.product img{
-    width:100%;
-    height:280px;
-    object-fit:cover;
-}
+    /* ====== CONTACT ====== */
+    .contact-box{
+      max-width:900px;
+      margin:0 auto;
+      background:#111;
+      color:#fff;
+      border-radius:var(--radius);
+      padding:26px 24px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 18px 40px rgba(0,0,0,0.20);
+    }
+    .contact-box h3{ font-size:22px; margin-bottom:6px; }
+    .contact-box p{ color:#d7d7d7; margin-top:6px; }
+    .contact-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .pill{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+      padding:10px 14px;
+      border-radius:999px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+    }
 
-.product-info{
-    padding:20px;
-}
+    /* ====== FOOTER ====== */
+    footer{
+      padding:28px 16px;
+      text-align:center;
+      color:#eee;
+      background:#111;
+      margin-top:40px;
+      border-top:2px solid var(--red);
+    }
 
-.product-info h3{
-    margin-bottom:10px;
-}
+    /* ====== WhatsApp Floating ====== */
+    .whatsapp{
+      position:fixed;
+      bottom:22px;
+      right:22px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#25D366;
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      padding:14px 16px;
+      border-radius:999px;
+      box-shadow:0 14px 35px rgba(0,0,0,0.25);
+      z-index:9999;
+    }
 
-.price{
-    font-weight:600;
-    color:#C91414;
-}
-
-/* FOOTER */
-footer{
-    background:#111;
-    color:#fff;
-    text-align:center;
-    padding:30px;
-}
-
-/* WHATSAPP FLOAT */
-.whatsapp{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#25D366;
-    padding:15px 20px;
-    border-radius:50px;
-    color:#fff;
-    font-weight:600;
-    text-decoration:none;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-</style>
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 1100px){
+      header{padding:0 22px;}
+      .section{padding:78px 22px;}
+      .products{grid-template-columns:repeat(2, minmax(0, 1fr));}
+      .hero h1{font-size:48px;}
+    }
+    @media (max-width: 720px){
+      header{height:auto; padding:14px 14px;}
+      nav{display:none; flex-direction:column; width:100%; padding:10px 0 0;}
+      nav.show{display:flex;}
+      .menu-btn{display:inline-flex;}
+      .brand img{height:52px;}
+      .hero{padding:130px 16px 70px;}
+      .hero h1{font-size:38px;}
+      .products{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <img src="logo.png" alt="Logo">
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#punjabi">Punjabi</a>
-        <a href="#contact">Contact</a>
+  <header>
+    <div class="brand">
+      <!-- IMPORTANT: Keep this file name exactly 'logo.png' in your repo root -->
+      <img src="logo.png" alt="RedBull Clothing Logo">
+    </div>
+
+    <button class="menu-btn" id="menuBtn">Menu</button>
+
+    <nav id="nav">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#punjabi">Punjabi</a>
+      <a href="#contact">Contact</a>
     </nav>
-</header>
+  </header>
 
-<section id="home" class="hero">
-    <h1>Power in Every <span>Thread</span></h1>
-    <p>Premium Streetwear & Elegant Punjabi Collection</p>
-    <button class="btn" onclick="document.getElementById('shop').scrollIntoView()">Shop Now</button>
-</section>
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <h1>Power in Every <span>Thread</span></h1>
+      <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
 
-<section id="shop" class="section">
-    <h2>Street Collection</h2>
-    <div class="products">
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
-            <div class="product-info">
-                <h3>Premium T-Shirt</h3>
-                <p class="price">৳ 890</p>
-            </div>
-        </div>
-
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2" alt="">
-            <div class="product-info">
-                <h3>Urban Hoodie</h3>
-                <p class="price">৳ 1990</p>
-            </div>
-        </div>
-
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1544441893-675973e31985" alt="">
-            <div class="product-info">
-                <h3>Street Pants</h3>
-                <p class="price">৳ 1590</p>
-            </div>
-        </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#shop">Shop Now</a>
+        <a class="btn btn-ghost" href="https://wa.me/8801732689835?text=I%20want%20to%20order%20from%20RedBull%20Clothing" target="_blank" rel="noopener">
+          Order on WhatsApp
+        </a>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="punjabi" class="section">
-    <h2>Punjabi Collection</h2>
+  <section id="shop" class="section">
+    <h2 class="section-title">Street Collection</h2>
+    <p class="section-sub">T-Shirts, Hoodies, Pants — clean fits, premium feel.</p>
+
     <div class="products">
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf" alt="">
-            <div class="product-info">
-                <h3>Classic Punjabi</h3>
-                <p class="price">৳ 2490</p>
-            </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80" alt="Premium T-Shirt">
+        <div class="product-info">
+          <h3>Premium T-Shirt</h3>
+          <div class="price">৳ 890</div>
         </div>
+      </div>
 
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c3" alt="">
-            <div class="product-info">
-                <h3>Festive Punjabi</h3>
-                <p class="price">৳ 2990</p>
-            </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80" alt="Urban Hoodie">
+        <div class="product-info">
+          <h3>Urban Hoodie</h3>
+          <div class="price">৳ 1990</div>
         </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80" alt="Street Pants">
+        <div class="product-info">
+          <h3>Street Pants</h3>
+          <div class="price">৳ 1590</div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<footer id="contact">
-    © 2026 RedBull Clothing | WhatsApp: 01732-689835
-</footer>
+  <section id="punjabi" class="section">
+    <h2 class="section-title">Punjabi Collection</h2>
+    <p class="section-sub">Traditional elegance with modern finishing.</p>
 
-<a class="whatsapp" href="https://wa.me/8801732689835?text=I want to order from RedBull Clothing" target="_blank">
-Order on WhatsApp
-</a>
+    <div class="products">
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1200&q=80" alt="Classic Punjabi">
+        <div class="product-info">
+          <h3>Classic Punjabi</h3>
+          <div class="price">৳ 2490</div>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c3?auto=format&fit=crop&w=1200&q=80" alt="Festive Punjabi">
+        <div class="product-info">
+          <h3>Festive Punjabi</h3>
+          <div class="price">৳ 2990</div>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80" alt="Limited Drop">
+        <div class="product-info">
+          <h3>Limited Drop</h3>
+          <div class="price">৳ 2790</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-box">
+      <h3>Order & Support</h3>
+      <p>WhatsApp orders only (fast reply). Tap below to message instantly.</p>
+
+      <div class="contact-row">
+        <a class="pill" href="https://wa.me/8801732689835?text=I%20want%20to%20order%20from%20RedBull%20Clothing" target="_blank" rel="noopener">
+          WhatsApp: 01732-689835
+        </a>
+        <a class="pill" href="#shop">Browse Products</a>
+        <a class="pill" href="#punjabi">Punjabi Section</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 RedBull Clothing — Bangladesh
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/8801732689835?text=I%20want%20to%20order%20from%20RedBull%20Clothing" target="_blank" rel="noopener">
+    Order on WhatsApp
+  </a>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('nav');
+
+    menuBtn.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+
+    // Close menu on click (mobile)
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('show'));
+    });
+  </script>
 
 </body>
 </html>
