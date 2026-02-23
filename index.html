@@ -49,35 +49,34 @@ nav a:hover{
 }
 /* HERO */
 .hero{
-   .hero{
+    position:relative;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
     flex-direction:column;
+    padding-top:160px;
+    padding-bottom:100px;
 
-    padding:140px 20px 90px;   /* top padding বেশি যাতে header overlap না করে */
+    background-image:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80');
 
-    background:
-      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-      url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80');
-
-    background-repeat:no-repeat;
     background-size:cover;
-    background-position:50% 20%;  /* এইটা zoom সমস্যার বড় fix */
-    color:#fff;
+    background-position:center;
+    background-repeat:no-repeat;
+    color:white;
 }
 .hero h1{
     font-size:52px;
     font-weight:700;
-    max-width:900px;
-    line-height:1.1;
-    text-shadow:0 10px 30px rgba(0,0,0,0.55);
+    color:white;
 }
 
 .hero span{
     color:#ff3c3c;
+}
 }
 
 .hero p{
