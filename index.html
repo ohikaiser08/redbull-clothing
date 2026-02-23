@@ -4,121 +4,244 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RedBull Clothing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{
+*{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
     background:#FFF8EC;
     color:#111;
+    scroll-behavior:smooth;
 }
+
+/* HEADER */
 header{
+    position:fixed;
+    width:100%;
+    top:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 40px;
-    background:#ffffff;
+    padding:15px 60px;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(8px);
     border-bottom:2px solid #C91414;
+    z-index:1000;
 }
+
 header img{
-    height:55px;
+    height:60px;
 }
+
 nav a{
-    margin:0 15px;
+    margin-left:30px;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:600;
     color:#111;
+    transition:.3s;
 }
+
+nav a:hover{
+    color:#C91414;
+}
+
+/* HERO */
 .hero{
-    padding:80px 40px;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
+    flex-direction:column;
     background:linear-gradient(135deg,#F4D9A7,#FFF8EC);
+    padding-top:80px;
 }
+
 .hero h1{
-    font-size:48px;
-    margin:0;
+    font-size:65px;
+    font-weight:700;
 }
+
 .hero span{
     color:#C91414;
 }
-.button{
-    margin-top:25px;
-    padding:12px 25px;
+
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.btn{
+    margin-top:30px;
+    padding:14px 35px;
+    border:none;
+    border-radius:40px;
+    font-weight:600;
+    font-size:16px;
+    cursor:pointer;
     background:#C91414;
     color:#fff;
-    border:none;
-    border-radius:30px;
-    font-weight:bold;
-    cursor:pointer;
+    transition:.3s;
 }
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* SECTION */
 .section{
-    padding:60px 40px;
+    padding:100px 80px;
 }
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-.card{
-    background:#fff;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-.card h3{
-    margin-top:0;
-}
-footer{
+
+.section h2{
+    font-size:40px;
+    margin-bottom:40px;
     text-align:center;
-    padding:25px;
+}
+
+/* PRODUCTS GRID */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.product{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    transition:.3s;
+}
+
+.product:hover{
+    transform:translateY(-10px);
+}
+
+.product img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    margin-bottom:10px;
+}
+
+.price{
+    font-weight:600;
+    color:#C91414;
+}
+
+/* FOOTER */
+footer{
     background:#111;
     color:#fff;
+    text-align:center;
+    padding:30px;
 }
+
+/* WHATSAPP FLOAT */
 .whatsapp{
     position:fixed;
-    bottom:20px;
-    right:20px;
+    bottom:25px;
+    right:25px;
     background:#25D366;
-    color:#fff;
     padding:15px 20px;
     border-radius:50px;
-    font-weight:bold;
+    color:#fff;
+    font-weight:600;
     text-decoration:none;
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 </style>
 </head>
+
 <body>
 
 <header>
-    <img src="logo.png" alt="RedBull Logo">
+    <img src="logo.png" alt="Logo">
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Categories</a>
-        <a href="#">Punjabi</a>
-        <a href="#">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#punjabi">Punjabi</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section class="hero">
+<section id="home" class="hero">
     <h1>Power in Every <span>Thread</span></h1>
-    <button class="button">Shop Now</button>
+    <p>Premium Streetwear & Elegant Punjabi Collection</p>
+    <button class="btn" onclick="document.getElementById('shop').scrollIntoView()">Shop Now</button>
 </section>
 
-<section class="section">
-    <h2>Categories</h2>
-    <div class="cards">
-        <div class="card"><h3>T-Shirts</h3><p>Premium quality everyday wear.</p></div>
-        <div class="card"><h3>Hoodies</h3><p>Heavy comfort with modern style.</p></div>
-        <div class="card"><h3>Pants</h3><p>Clean & confident fits.</p></div>
-        <div class="card"><h3>Punjabi Collection</h3><p>Tradition with strength.</p></div>
+<section id="shop" class="section">
+    <h2>Street Collection</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
+            <div class="product-info">
+                <h3>Premium T-Shirt</h3>
+                <p class="price">৳ 890</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2" alt="">
+            <div class="product-info">
+                <h3>Urban Hoodie</h3>
+                <p class="price">৳ 1990</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1544441893-675973e31985" alt="">
+            <div class="product-info">
+                <h3>Street Pants</h3>
+                <p class="price">৳ 1590</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<footer>
+<section id="punjabi" class="section">
+    <h2>Punjabi Collection</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf" alt="">
+            <div class="product-info">
+                <h3>Classic Punjabi</h3>
+                <p class="price">৳ 2490</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c3" alt="">
+            <div class="product-info">
+                <h3>Festive Punjabi</h3>
+                <p class="price">৳ 2990</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
     © 2026 RedBull Clothing | WhatsApp: 01732-689835
 </footer>
 
-<a class="whatsapp" href="https://wa.me/8801732689835" target="_blank">
+<a class="whatsapp" href="https://wa.me/8801732689835?text=I want to order from RedBull Clothing" target="_blank">
 Order on WhatsApp
 </a>
 
