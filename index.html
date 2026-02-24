@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -19,276 +19,248 @@
       --card:#ffffff;
       --shadow:0 15px 35px rgba(0,0,0,0.10);
       --radius:20px;
+      --dark:#111;
     }
-
     *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);}
 
-    /* ====== HEADER ====== */
     header{
-      position:fixed;
-      inset:0 0 auto 0;
+      position:fixed; inset:0 0 auto 0;
       height:84px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      display:flex; align-items:center; justify-content:space-between;
       padding:0 60px;
       background:linear-gradient(90deg,#111,#1c1c1c);
       border-bottom:2px solid var(--red);
       z-index:9999;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:160px;
-    }
+    .brand{display:flex;align-items:center;gap:14px;min-width:160px;}
     .brand img{
-      height:65px;
-      width:auto;
-      display:block;
-      border-radius:10px;
-      background:#fff;
-      padding:4px; /* logo looks clean */
+      height:58px; width:auto; display:block;
+      border-radius:10px; background:#fff; padding:4px;
     }
-    nav{
-      display:flex;
-      align-items:center;
-      gap:26px;
-    }
-    nav a{
-      text-decoration:none;
-      font-weight:600;
-      color:#fff;
-      transition:0.25s;
-      padding:8px 10px;
-      border-radius:10px;
-    }
-    nav a:hover{color:var(--red2); background:rgba(255,255,255,0.06);}
 
-    /* Mobile menu */
+    nav{display:flex;align-items:center;gap:18px;}
+    nav a{
+      text-decoration:none; font-weight:700; color:#fff;
+      transition:.25s; padding:8px 10px; border-radius:10px;
+    }
+    nav a:hover{color:var(--red2); background:rgba(255,255,255,.06);}
     .menu-btn{
       display:none;
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(255,255,255,0.06);
-      color:#fff;
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      color:#fff; padding:10px 12px; border-radius:12px;
+      cursor:pointer; font-weight:700;
     }
 
-    /* ====== HERO ====== */
+    /* Cart button */
+    .cart-btn{
+      display:inline-flex; align-items:center; gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff; padding:10px 12px; border-radius:12px;
+      cursor:pointer; font-weight:800;
+    }
+    .badge{
+      min-width:22px; height:22px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--red); color:#fff;
+      border-radius:999px; font-size:12px; padding:0 7px;
+    }
+
     .hero{
       position:relative;
       min-height:100vh;
       padding:140px 20px 90px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; overflow:hidden;
     }
-
-    /* background layer (never breaks) */
     .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
+      content:""; position:absolute; inset:0;
       background:
         linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)),
         url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
+      background-size:cover; background-position:center; background-repeat:no-repeat;
       transform:scale(1.05);
       z-index:0;
     }
-
-    /* subtle glow vignette */
     .hero::after{
-      content:"";
-      position:absolute;
-      inset:-40px;
+      content:""; position:absolute; inset:-40px;
       background:radial-gradient(circle at 50% 40%, rgba(255,0,0,0.12), transparent 55%);
-      z-index:0;
-      pointer-events:none;
+      z-index:0; pointer-events:none;
     }
-
-    .hero-inner{
-      position:relative;
-      z-index:1;
-      max-width:980px;
-    }
-
+    .hero-inner{position:relative; z-index:1; max-width:980px;}
     .hero h1{
-      font-size:56px;
-      line-height:1.05;
-      font-weight:800;
-      color:#fff;
-      text-shadow:0 12px 40px rgba(0,0,0,0.55);
+      font-size:56px; line-height:1.05; font-weight:800;
+      color:#fff; text-shadow:0 12px 40px rgba(0,0,0,0.55);
       letter-spacing:-0.5px;
     }
-    .hero h1 span{ color:var(--red2); }
-
+    .hero h1 span{color:var(--red2);}
     .hero p{
-      margin:14px auto 0;
-      font-size:18px;
-      color:#ececec;
-      max-width:760px;
+      margin:14px auto 0; font-size:18px; color:#ececec; max-width:760px;
       text-shadow:0 12px 35px rgba(0,0,0,0.45);
     }
-
     .hero-actions{
       margin-top:28px;
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
     }
-
     .btn{
-      padding:14px 26px;
-      border:none;
-      border-radius:999px;
-      font-weight:700;
-      font-size:15px;
-      cursor:pointer;
-      transition:0.25s;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+      padding:14px 26px; border:none; border-radius:999px;
+      font-weight:800; font-size:15px; cursor:pointer;
+      transition:0.25s; display:inline-flex; align-items:center; gap:10px;
       text-decoration:none;
     }
-    .btn-primary{
-      background:var(--red);
-      color:#fff;
-      box-shadow:0 16px 35px rgba(201,20,20,0.32);
-    }
-    .btn-primary:hover{ transform:translateY(-2px); }
+    .btn-primary{background:var(--red); color:#fff; box-shadow:0 16px 35px rgba(201,20,20,0.32);}
+    .btn-primary:hover{transform:translateY(-2px);}
     .btn-ghost{
-      background:rgba(255,255,255,0.10);
-      color:#fff;
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(8px);
+      background:rgba(255,255,255,0.10); color:#fff;
+      border:1px solid rgba(255,255,255,0.18); backdrop-filter: blur(8px);
     }
-    .btn-ghost:hover{ transform:translateY(-2px); }
+    .btn-ghost:hover{transform:translateY(-2px);}
 
-    /* ====== SECTION ====== */
-    .section{
-      padding:92px 70px;
-    }
-    .section-title{
-      text-align:center;
-      font-size:38px;
-      margin-bottom:40px;
-      letter-spacing:-0.4px;
-    }
-    .section-sub{
-      text-align:center;
-      margin:-26px auto 40px;
-      color:var(--muted);
-      max-width:760px;
-    }
+    .section{padding:92px 70px;}
+    .section-title{text-align:center;font-size:38px;margin-bottom:14px;letter-spacing:-0.4px;}
+    .section-sub{text-align:center;margin:0 auto 40px;color:var(--muted);max-width:760px;}
 
-    /* ====== GRID ====== */
     .products{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:26px;
-      max-width:1200px;
-      margin:0 auto;
+      display:grid; grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:26px; max-width:1200px; margin:0 auto;
     }
-
     .product{
-      background:var(--card);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      transition:0.25s;
+      background:var(--card); border-radius:var(--radius); overflow:hidden;
+      box-shadow:var(--shadow); transition:0.25s;
       border:1px solid rgba(0,0,0,0.06);
+      cursor:pointer;
     }
-    .product:hover{ transform:translateY(-8px); }
+    .product:hover{transform:translateY(-8px);}
+    .product img{width:100%;height:250px;object-fit:cover;display:block;}
+    .product-info{padding:18px 18px 20px;}
+    .product-info h3{font-size:18px;margin-bottom:6px;}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:10px;}
+    .row{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .price{font-weight:900;color:var(--red);font-size:16px;}
+    .add-btn{
+      border:none; cursor:pointer;
+      background:#111; color:#fff;
+      padding:10px 12px; border-radius:12px; font-weight:800;
+      transition:.2s;
+    }
+    .add-btn:hover{transform:translateY(-1px);}
 
-    .product img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-      display:block;
-    }
-    .product-info{
-      padding:18px 18px 20px;
-    }
-    .product-info h3{
-      font-size:18px;
-      margin-bottom:8px;
-    }
-    .price{
-      font-weight:800;
-      color:var(--red);
-      font-size:16px;
-    }
-
-    /* ====== CONTACT ====== */
     .contact-box{
-      max-width:900px;
-      margin:0 auto;
-      background:#111;
-      color:#fff;
-      border-radius:var(--radius);
+      max-width:900px; margin:0 auto;
+      background:#111; color:#fff; border-radius:var(--radius);
       padding:26px 24px;
       border:1px solid rgba(255,255,255,0.08);
       box-shadow:0 18px 40px rgba(0,0,0,0.20);
     }
-    .contact-box h3{ font-size:22px; margin-bottom:6px; }
-    .contact-box p{ color:#d7d7d7; margin-top:6px; }
+    .contact-box h3{font-size:22px;margin-bottom:6px;}
+    .contact-box p{color:#d7d7d7;margin-top:6px;}
     .contact-row{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:14px;
+      display:flex; justify-content:space-between; gap:14px;
+      flex-wrap:wrap; margin-top:14px;
     }
     .pill{
       background:rgba(255,255,255,0.08);
       border:1px solid rgba(255,255,255,0.12);
-      padding:10px 14px;
-      border-radius:999px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
+      padding:10px 14px; border-radius:999px;
+      color:#fff; text-decoration:none; font-weight:700;
     }
 
-    /* ====== FOOTER ====== */
     footer{
-      padding:28px 16px;
-      text-align:center;
-      color:#eee;
-      background:#111;
-      margin-top:40px;
-      border-top:2px solid var(--red);
+      padding:28px 16px; text-align:center; color:#eee;
+      background:#111; margin-top:40px; border-top:2px solid var(--red);
     }
 
-    /* ====== WhatsApp Floating ====== */
     .whatsapp{
-      position:fixed;
-      bottom:22px;
-      right:22px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      background:#25D366;
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      padding:14px 16px;
-      border-radius:999px;
-      box-shadow:0 14px 35px rgba(0,0,0,0.25);
+      position:fixed; bottom:22px; right:22px;
+      display:flex; align-items:center; gap:10px;
+      background:#25D366; color:#fff; text-decoration:none;
+      font-weight:900; padding:14px 16px;
+      border-radius:999px; box-shadow:0 14px 35px rgba(0,0,0,0.25);
       z-index:9999;
     }
 
-    /* ====== RESPONSIVE ====== */
+    /* ===== CART DRAWER ===== */
+    .overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.55);
+      display:none; z-index:9998;
+    }
+    .overlay.show{display:block;}
+    .drawer{
+      position:fixed; top:0; right:0;
+      width:min(420px, 92vw);
+      height:100vh;
+      background:#fff;
+      transform:translateX(110%);
+      transition:transform .25s ease;
+      z-index:9999;
+      display:flex; flex-direction:column;
+      border-left:1px solid rgba(0,0,0,0.08);
+    }
+    .drawer.show{transform:translateX(0);}
+    .drawer-head{
+      padding:16px 16px;
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid rgba(0,0,0,0.08);
+    }
+    .drawer-head h3{font-size:18px;}
+    .close-btn{
+      border:none; background:#f2f2f2; cursor:pointer;
+      padding:10px 12px; border-radius:12px; font-weight:900;
+    }
+    .cart-list{padding:14px 16px; overflow:auto; flex:1;}
+    .cart-item{
+      display:grid;
+      grid-template-columns:64px 1fr auto;
+      gap:10px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(0,0,0,0.07);
+      align-items:center;
+    }
+    .cart-item img{width:64px;height:56px;object-fit:cover;border-radius:12px;}
+    .ci-title{font-weight:800;font-size:14px;}
+    .ci-meta{color:#666;font-size:12px;margin-top:2px;}
+    .qty{
+      display:flex; align-items:center; gap:8px;
+    }
+    .qbtn{
+      width:32px; height:32px; border-radius:10px;
+      border:1px solid rgba(0,0,0,0.12); background:#fff;
+      cursor:pointer; font-weight:900;
+    }
+    .cart-foot{
+      padding:14px 16px;
+      border-top:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+    }
+    .tot{
+      display:flex; align-items:center; justify-content:space-between;
+      font-weight:900; margin-bottom:12px;
+    }
+    .checkout{
+      width:100%;
+      border:none; cursor:pointer;
+      background:var(--red); color:#fff;
+      padding:14px 14px; border-radius:14px;
+      font-weight:900;
+      box-shadow:0 16px 35px rgba(201,20,20,0.26);
+    }
+    .clear{
+      width:100%;
+      margin-top:10px;
+      border:1px solid rgba(0,0,0,0.10);
+      background:#fff;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
     @media (max-width: 1100px){
       header{padding:0 22px;}
       .section{padding:78px 22px;}
@@ -296,7 +268,7 @@
       .hero h1{font-size:48px;}
     }
     @media (max-width: 720px){
-      header{height:auto; padding:14px 14px;}
+      header{height:auto; padding:14px 14px; gap:10px; flex-wrap:wrap;}
       nav{display:none; flex-direction:column; width:100%; padding:10px 0 0;}
       nav.show{display:flex;}
       .menu-btn{display:inline-flex;}
@@ -312,7 +284,6 @@
 
   <header>
     <div class="brand">
-      <!-- IMPORTANT: Keep this file name exactly 'logo.png' in your repo root -->
       <img src="logo.png" alt="RedBull Clothing Logo">
     </div>
 
@@ -323,6 +294,9 @@
       <a href="#shop">Shop</a>
       <a href="#punjabi">Punjabi</a>
       <a href="#contact">Contact</a>
+      <button class="cart-btn" id="cartOpenBtn" type="button">
+        Cart <span class="badge" id="cartCount">0</span>
+      </button>
     </nav>
   </header>
 
@@ -344,62 +318,14 @@
     <h2 class="section-title">Street Collection</h2>
     <p class="section-sub">T-Shirts, Hoodies, Pants — clean fits, premium feel.</p>
 
-    <div class="products">
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80" alt="Premium T-Shirt">
-        <div class="product-info">
-          <h3>Premium T-Shirt</h3>
-          <div class="price">৳ 890</div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80" alt="Urban Hoodie">
-        <div class="product-info">
-          <h3>Urban Hoodie</h3>
-          <div class="price">৳ 1990</div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80" alt="Street Pants">
-        <div class="product-info">
-          <h3>Street Pants</h3>
-          <div class="price">৳ 1590</div>
-        </div>
-      </div>
-    </div>
+    <div class="products" id="streetGrid"></div>
   </section>
 
   <section id="punjabi" class="section">
     <h2 class="section-title">Punjabi Collection</h2>
     <p class="section-sub">Traditional elegance with modern finishing.</p>
 
-    <div class="products">
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1200&q=80" alt="Classic Punjabi">
-        <div class="product-info">
-          <h3>Classic Punjabi</h3>
-          <div class="price">৳ 2490</div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c3?auto=format&fit=crop&w=1200&q=80" alt="Festive Punjabi">
-        <div class="product-info">
-          <h3>Festive Punjabi</h3>
-          <div class="price">৳ 2990</div>
-        </div>
-      </div>
-
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80" alt="Limited Drop">
-        <div class="product-info">
-          <h3>Limited Drop</h3>
-          <div class="price">৳ 2790</div>
-        </div>
-      </div>
-    </div>
+    <div class="products" id="punjabiGrid"></div>
   </section>
 
   <section id="contact" class="section">
@@ -419,28 +345,225 @@
     </div>
   </section>
 
-  <footer>
-    © 2026 RedBull Clothing — Bangladesh
-  </footer>
+  <footer>© 2026 RedBull Clothing — Bangladesh</footer>
 
   <a class="whatsapp" href="https://wa.me/8801732689835?text=I%20want%20to%20order%20from%20RedBull%20Clothing" target="_blank" rel="noopener">
     Order on WhatsApp
   </a>
 
+  <!-- Cart Drawer -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <h3>Your Cart</h3>
+      <button class="close-btn" id="cartCloseBtn" type="button">✕</button>
+    </div>
+
+    <div class="cart-list" id="cartList"></div>
+
+    <div class="cart-foot">
+      <div class="tot">
+        <div>Total</div>
+        <div id="cartTotal">৳ 0</div>
+      </div>
+      <button class="checkout" id="checkoutBtn" type="button">Checkout on WhatsApp</button>
+      <button class="clear" id="clearBtn" type="button">Clear Cart</button>
+    </div>
+  </aside>
+
   <script>
-    // Mobile menu toggle
+    // ====== Product Data (Shared with product.html) ======
+    const PRODUCTS = [
+      // Street
+      { sku:"TSHIRT-001", name:"Premium T-Shirt", cat:"street", price:890, img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80", desc:"Soft premium fabric, everyday fit, durable print.", sizes:["S","M","L","XL"] },
+      { sku:"HOODIE-001", name:"Urban Hoodie", cat:"street", price:1990, img:"https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80", desc:"Warm comfort, clean street look, heavy feel.", sizes:["M","L","XL"] },
+      { sku:"PANTS-001", name:"Street Pants", cat:"street", price:1590, img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80", desc:"Modern tapered fit, confident clean style.", sizes:["30","32","34","36"] },
+
+      // Punjabi
+      { sku:"PUN-001", name:"Classic Punjabi", cat:"punjabi", price:2490, img:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1200&q=80", desc:"Classic cut with premium finishing.", sizes:["M","L","XL"] },
+      { sku:"PUN-002", name:"Festive Punjabi", cat:"punjabi", price:2990, img:"https://images.unsplash.com/photo-1603252109360-909baaf261c3?auto=format&fit=crop&w=1200&q=80", desc:"Festive premium look, elegant vibe.", sizes:["M","L","XL"] },
+      { sku:"PUN-003", name:"Limited Drop Punjabi", cat:"punjabi", price:2790, img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80", desc:"Limited drop — premium fabric, sharp style.", sizes:["M","L","XL"] },
+    ];
+
+    // ====== Helpers ======
+    const formatBDT = (n) => `৳ ${Number(n).toLocaleString("en-US")}`;
+    const getProduct = (sku) => PRODUCTS.find(p => p.sku === sku);
+
+    // ====== Render Products ======
+    function productCard(p){
+      return `
+        <div class="product" data-sku="${p.sku}">
+          <img src="${p.img}" alt="${p.name}">
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <div class="meta">${p.cat === "street" ? "Street" : "Punjabi"} • Best Seller</div>
+            <div class="row">
+              <div class="price">${formatBDT(p.price)}</div>
+              <button class="add-btn" data-add="${p.sku}" type="button">Add</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    const streetGrid = document.getElementById("streetGrid");
+    const punjabiGrid = document.getElementById("punjabiGrid");
+    streetGrid.innerHTML = PRODUCTS.filter(p=>p.cat==="street").map(productCard).join("");
+    punjabiGrid.innerHTML = PRODUCTS.filter(p=>p.cat==="punjabi").map(productCard).join("");
+
+    // ====== Product Page Nav (Card click opens product.html) ======
+    document.addEventListener("click", (e) => {
+      const card = e.target.closest(".product");
+      if(card && !e.target.closest("[data-add]")){
+        const sku = card.getAttribute("data-sku");
+        window.location.href = `product.html?sku=${encodeURIComponent(sku)}`;
+      }
+    });
+
+    // ====== CART (localStorage) ======
+    const CART_KEY = "rb_cart_v1";
+
+    function loadCart(){
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+      catch { return []; }
+    }
+    function saveCart(cart){
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+    function cartCount(cart){
+      return cart.reduce((sum, it) => sum + it.qty, 0);
+    }
+    function cartTotal(cart){
+      return cart.reduce((sum, it) => sum + (it.price * it.qty), 0);
+    }
+
+    function addToCart(sku, size="M"){
+      const p = getProduct(sku);
+      if(!p) return;
+
+      const cart = loadCart();
+      const existing = cart.find(x => x.sku===sku && x.size===size);
+      if(existing) existing.qty += 1;
+      else cart.push({ sku, name:p.name, price:p.price, img:p.img, size, qty:1 });
+
+      saveCart(cart);
+      renderCartUI();
+      openCart();
+    }
+
+    function changeQty(index, delta){
+      const cart = loadCart();
+      if(!cart[index]) return;
+      cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index,1);
+      saveCart(cart);
+      renderCartUI();
+    }
+
+    function clearCart(){
+      saveCart([]);
+      renderCartUI();
+    }
+
+    // ====== Cart Drawer UI ======
+    const cartCountEl = document.getElementById("cartCount");
+    const cartListEl = document.getElementById("cartList");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const overlay = document.getElementById("overlay");
+    const drawer = document.getElementById("drawer");
+
+    const cartOpenBtn = document.getElementById("cartOpenBtn");
+    const cartCloseBtn = document.getElementById("cartCloseBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    function openCart(){
+      overlay.classList.add("show");
+      drawer.classList.add("show");
+    }
+    function closeCart(){
+      overlay.classList.remove("show");
+      drawer.classList.remove("show");
+    }
+
+    function renderCartUI(){
+      const cart = loadCart();
+      cartCountEl.textContent = cartCount(cart);
+      cartTotalEl.textContent = formatBDT(cartTotal(cart));
+
+      if(cart.length === 0){
+        cartListEl.innerHTML = `<p style="color:#555; font-weight:700;">Your cart is empty.</p>`;
+        return;
+      }
+
+      cartListEl.innerHTML = cart.map((it, idx) => `
+        <div class="cart-item">
+          <img src="${it.img}" alt="${it.name}">
+          <div>
+            <div class="ci-title">${it.name}</div>
+            <div class="ci-meta">Size: ${it.size} • ${formatBDT(it.price)}</div>
+          </div>
+          <div class="qty">
+            <button class="qbtn" data-qminus="${idx}" type="button">−</button>
+            <div style="min-width:16px;text-align:center;font-weight:900;">${it.qty}</div>
+            <button class="qbtn" data-qplus="${idx}" type="button">+</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Add button click
+    document.addEventListener("click", (e) => {
+      const sku = e.target.getAttribute("data-add");
+      if(sku){
+        // default size = first available size
+        const p = getProduct(sku);
+        const defaultSize = (p && p.sizes && p.sizes[0]) ? p.sizes[0] : "M";
+        addToCart(sku, defaultSize);
+      }
+
+      const minus = e.target.getAttribute("data-qminus");
+      const plus = e.target.getAttribute("data-qplus");
+      if(minus !== null) changeQty(Number(minus), -1);
+      if(plus !== null) changeQty(Number(plus), +1);
+    });
+
+    cartOpenBtn.addEventListener("click", openCart);
+    cartCloseBtn.addEventListener("click", closeCart);
+    overlay.addEventListener("click", closeCart);
+    clearBtn.addEventListener("click", clearCart);
+
+    // WhatsApp checkout with cart summary
+    checkoutBtn.addEventListener("click", () => {
+      const cart = loadCart();
+      if(cart.length === 0){
+        alert("Cart is empty.");
+        return;
+      }
+      const total = cartTotal(cart);
+      const lines = cart.map(it => `• ${it.name} (Size: ${it.size}) x${it.qty} = ৳${it.price * it.qty}`);
+      const msg =
+`Order Request - RedBull Clothing
+${lines.join("\n")}
+Total: ৳${total}
+
+Name:
+Address:
+Phone:
+Delivery area:`;
+
+      const url = "https://wa.me/8801732689835?text=" + encodeURIComponent(msg);
+      window.open(url, "_blank");
+    });
+
+    // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const nav = document.getElementById('nav');
+    menuBtn.addEventListener('click', () => nav.classList.toggle('show'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('show')));
 
-    menuBtn.addEventListener('click', () => {
-      nav.classList.toggle('show');
-    });
-
-    // Close menu on click (mobile)
-    nav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => nav.classList.remove('show'));
-    });
+    // Initial render
+    renderCartUI();
   </script>
-
 </body>
 </html>
