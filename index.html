@@ -567,3 +567,48 @@ Delivery area:`;
   </script>
 </body>
 </html>
+<script>
+/* ====== QUICK FIX: Render products if missing ====== */
+(function () {
+  // 1) Find containers (try multiple ids/classes to match your existing HTML)
+  const streetGrid =
+    document.querySelector("#streetGrid") ||
+    document.querySelector("#streetProducts") ||
+    document.querySelector(".street-grid") ||
+    document.querySelector('[data-grid="street"]');
+
+  const punjabiGrid =
+    document.querySelector("#punjabiGrid") ||
+    document.querySelector("#punjabiProducts") ||
+    document.querySelector(".punjabi-grid") ||
+    document.querySelector('[data-grid="punjabi"]');
+
+  // If no grids found, stop (your HTML uses different ids)
+  if (!streetGrid && !punjabiGrid) return;
+
+  // 2) If PRODUCTS not found, stop
+  if (!window.PRODUCTS || !Array.isArray(window.PRODUCTS)) return;
+
+  // 3) Card template
+  const cardHTML = (p) => `
+    <div class="product-card">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">
+      <div class="product-body">
+        <h3>${p.name}</h3>
+        <p class="meta">${p.cat === "street" ? "Street" : "Punjabi"} • Best Seller</p>
+        <div class="row">
+          <div class="price">৳ ${Number(p.price).toLocaleString("en-US")}</div>
+          <button class="add-btn" type="button" onclick="window.addToCart && window.addToCart('${p.sku}')">Add</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 4) Render
+  const streetItems = window.PRODUCTS.filter(p => p.cat === "street");
+  const punjabiItems = window.PRODUCTS.filter(p => p.cat === "punjabi");
+
+  if (streetGrid) streetGrid.innerHTML = streetItems.map(cardHTML).join("");
+  if (punjabiGrid) punjabiGrid.innerHTML = punjabiItems.map(cardHTML).join("");
+})();
+</script>
