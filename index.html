@@ -5,78 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedBull Clothing</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0d10;
-      --paper:#fff7ea;
-      --card:#0f1217;
-      --muted:#aeb7c2;
-      --text:#0f1217;
-      --white:#fff;
-      --red:#e11d2e;
-      --red2:#ff3344;
-      --line:rgba(255,255,255,.12);
-      --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius:18px;
-      --radius2:26px;
+      --bg:#fff6ea;
+      --card:#ffffff;
+      --text:#111;
+      --muted:#666;
+      --red:#e11b22;
+      --dark:#0b0f14;
+      --shadow: 0 14px 40px rgba(0,0,0,.12);
+      --softshadow: 0 10px 24px rgba(0,0,0,.10);
+      --radius: 22px;
     }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#0b0d10;
-      color:#fff;
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
 
-    /* ===== Header ===== */
-    .topbar{
+    /* HEADER */
+    header{
       position:fixed;
-      top:0; left:0; right:0;
+      left:0; top:0; right:0;
       z-index:1000;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,.35));
-      border-bottom: 2px solid rgba(225,29,46,.55);
+      background:linear-gradient(180deg, rgba(0,0,0,.88), rgba(0,0,0,.65));
+      border-bottom:1px solid rgba(225,27,34,.6);
+      backdrop-filter: blur(8px);
     }
-
     .navwrap{
       max-width:1200px;
       margin:0 auto;
-      padding:14px 18px;
+      padding:12px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:16px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:210px;
+      min-width:220px;
     }
     .brand img{
-      width:56px;
-      height:56px;
-      border-radius:14px;
+      width:52px;
+      height:52px;
       object-fit:cover;
-      border:2px solid rgba(255,255,255,.2);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      background:#111;
+      border-radius:14px;
+      border:2px solid rgba(255,255,255,.5);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+      background:#fff;
     }
-    .brand .name{
-      display:flex;
-      flex-direction:column;
+    .brand .title{
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.3px;
       line-height:1.1;
+      font-size:16px;
     }
-    .brand .name b{ font-size:14px; letter-spacing:.3px; }
-    .brand .name span{ font-size:12px; color:rgba(255,255,255,.7); }
-
     nav{
       display:flex;
       align-items:center;
@@ -85,57 +78,58 @@
       justify-content:flex-end;
     }
     nav a{
-      color:rgba(255,255,255,.92);
-      text-decoration:none;
+      color:#fff;
       font-weight:600;
-      font-size:14px;
+      opacity:.92;
       padding:10px 12px;
       border-radius:12px;
       transition:.2s ease;
     }
-    nav a:hover{
-      background:rgba(255,255,255,.08);
-      transform: translateY(-1px);
+    nav a:hover{background:rgba(255,255,255,.10); opacity:1}
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
     }
-
-    .rightActions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:180px;
-      justify-content:flex-end;
-    }
-
     .pill{
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.08);
       color:#fff;
-      padding:10px 12px;
+      padding:10px 14px;
       border-radius:999px;
-      font-weight:700;
-      font-size:13px;
-      cursor:pointer;
+      font-weight:600;
       transition:.2s ease;
-      white-space:nowrap;
+      cursor:pointer;
     }
-    .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.1); }
+    .pill:hover{transform:translateY(-1px); background:rgba(255,255,255,.12)}
     .pill.red{
-      background:linear-gradient(135deg,var(--red),var(--red2));
-      border:none;
-      box-shadow: 0 12px 30px rgba(225,29,46,.35);
+      border-color: rgba(225,27,34,.65);
+      background: rgba(225,27,34,.88);
+    }
+    .pill.red:hover{background: rgba(225,27,34,1)}
+    .cartCount{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:24px;
+      height:24px;
+      padding:0 7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      margin-left:8px;
+      font-size:12px;
+      font-weight:700;
     }
 
-    /* ===== Hero ===== */
+    /* HERO */
     .hero{
       min-height:100vh;
-      padding-top:96px; /* fixed header space */
+      padding-top:92px;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
       position:relative;
       overflow:hidden;
 
+      /* hero background (safe: external) */
       background-image:
         linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)),
         url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80');
@@ -143,420 +137,212 @@
       background-position:center;
       background-repeat:no-repeat;
     }
-
     .heroInner{
-      max-width:980px;
-      padding:38px 18px 42px;
+      width:min(1080px, 92vw);
+      text-align:center;
+      color:#fff;
+      padding:56px 18px 66px;
     }
     .hero h1{
-      margin:0 0 10px;
-      font-size:54px;
-      line-height:1.07;
-      letter-spacing:-.5px;
+      margin:0 0 12px;
+      font-size:clamp(34px, 5vw, 58px);
+      line-height:1.05;
+      font-weight:800;
+      letter-spacing:.2px;
+      text-shadow: 0 14px 35px rgba(0,0,0,.35);
     }
-    .hero h1 .accent{
-      color:var(--red2);
-      text-shadow: 0 10px 30px rgba(255,51,68,.25);
-    }
+    .hero h1 span{color:#ff3b3f}
     .hero p{
       margin:0 auto 22px;
-      max-width:740px;
-      color:rgba(255,255,255,.85);
-      font-size:16px;
+      max-width:780px;
+      opacity:.92;
+      font-size:clamp(14px, 1.5vw, 18px);
       line-height:1.6;
     }
-    .ctaRow{
+    .heroBtns{
       display:flex;
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
-      margin-top:14px;
+      margin-top:12px;
     }
-    .btn{
-      border:none;
-      border-radius:999px;
-      padding:12px 18px;
-      font-weight:800;
-      cursor:pointer;
-      transition:.2s ease;
-      font-size:14px;
-    }
-    .btnPrimary{
-      background:linear-gradient(135deg,var(--red),var(--red2));
-      color:#fff;
-      box-shadow: 0 14px 35px rgba(225,29,46,.35);
-    }
-    .btnGhost{
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      color:#fff;
-    }
-    .btn:hover{ transform:translateY(-1px); }
 
-    /* ===== Sections ===== */
+    /* SECTIONS */
     .section{
-      padding:78px 18px;
-      background: var(--paper);
-      color:var(--text);
-    }
-    .section.dark{
-      background: #07090c;
-      color:#fff;
-    }
-    .wrap{
       max-width:1200px;
       margin:0 auto;
+      padding:70px 18px;
     }
-    .sectionTitle{
+    .sectionHead{
       text-align:center;
-      margin:0 0 8px;
-      font-size:38px;
-      letter-spacing:-.4px;
+      margin-bottom:28px;
     }
-    .sectionSub{
-      text-align:center;
-      margin:0 0 34px;
-      color:rgba(15,18,23,.72);
-      font-weight:500;
+    .sectionHead h2{
+      margin:0 0 6px;
+      font-size:clamp(26px, 3vw, 40px);
+      font-weight:800;
     }
-    .dark .sectionSub{ color:rgba(255,255,255,.72); }
+    .sectionHead p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-    /* ===== Grid cards ===== */
+    /* Cards Grid */
     .grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap:22px;
+      gap:20px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
+      .brand .title{display:none;}
+    }
+    @media (max-width: 620px){
+      nav{gap:6px}
+      nav a{padding:8px 10px}
+      .grid{grid-template-columns: 1fr;}
     }
 
     .card{
-      background:#fff;
-      border-radius: var(--radius2);
+      background:var(--card);
+      border-radius:var(--radius);
       overflow:hidden;
-      box-shadow: 0 16px 50px rgba(0,0,0,.08);
-      border:1px solid rgba(15,18,23,.07);
+      box-shadow:var(--softshadow);
+      border:1px solid rgba(0,0,0,.06);
+      transition:.22s ease;
       position:relative;
-      transition:.2s ease;
     }
-    .card:hover{ transform: translateY(-3px); box-shadow:0 20px 60px rgba(0,0,0,.12); }
-
+    .card:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
     .badge{
       position:absolute;
-      top:14px;
-      left:14px;
-      background:rgba(0,0,0,.7);
+      top:14px; left:14px;
+      background:rgba(0,0,0,.68);
       color:#fff;
-      padding:8px 10px;
+      padding:8px 12px;
       border-radius:999px;
       font-size:12px;
-      font-weight:800;
+      font-weight:700;
       letter-spacing:.2px;
+      z-index:2;
       backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,.18);
     }
-
-    .card img{
-      width:100%;
-      height:230px;
-      object-fit:cover;
-      display:block;
+    .thumb{
+      height:250px;
       background:#eee;
+      overflow:hidden;
     }
-
-    .cardBody{
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .content{
       padding:16px 16px 18px;
       display:flex;
       flex-direction:column;
       gap:8px;
     }
-    .cardBody h3{
-      margin:0;
+    .name{
       font-size:18px;
-      letter-spacing:-.2px;
+      font-weight:800;
+      margin:0;
     }
     .meta{
-      margin:0;
+      color:var(--muted);
       font-size:13px;
-      color:rgba(15,18,23,.65);
-      font-weight:600;
+      margin:0;
     }
     .row{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
+      gap:12px;
       margin-top:6px;
     }
     .price{
       font-weight:900;
       color:var(--red);
-      font-size:16px;
+      font-size:18px;
     }
     .addBtn{
-      background:#0f1217;
-      color:#fff;
       border:none;
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:900;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-    .addBtn:hover{ transform:translateY(-1px); background:#111723; }
-
-    /* ===== Punjabi Featured ===== */
-    .punjabiHero{
-      background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-        url('punjabi.jpg');
-      background-size:cover;
-      background-position:center;
-      border-radius: 26px;
-      overflow:hidden;
-      padding:46px 22px;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(255,255,255,.12);
-      margin-bottom:26px;
-    }
-    .punjabiHero h2{
-      margin:0 0 10px;
-      font-size:34px;
-      letter-spacing:-.3px;
-    }
-    .punjabiHero p{
-      margin:0 0 18px;
-      color:rgba(255,255,255,.85);
-      max-width:700px;
-      line-height:1.6;
-    }
-
-    /* ===== Contact ===== */
-    .contactCard{
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .contactRow{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .contactRow a{
+      background:#0f1218;
       color:#fff;
-      text-decoration:none;
       font-weight:800;
+      padding:10px 16px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:.2s ease;
     }
-    .small{
-      color:rgba(255,255,255,.75);
-      font-size:13px;
-      line-height:1.6;
+    .addBtn:hover{transform:translateY(-1px); background:#000}
+
+    /* Contact */
+    .contactBox{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--softshadow);
+      border:1px solid rgba(0,0,0,.06);
+      padding:24px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:center;
+    }
+    @media (max-width: 820px){
+      .contactBox{grid-template-columns:1fr}
+    }
+    .contactBox h3{margin:0 0 6px; font-size:22px}
+    .contactBox p{margin:0; color:var(--muted); line-height:1.7}
+    .contactActions{
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
     }
 
-    /* ===== Floating WhatsApp + Cart ===== */
-    .floatWrap{
+    /* Floating WhatsApp button */
+    .waFloat{
       position:fixed;
-      right:16px;
-      bottom:16px;
+      right:18px;
+      bottom:18px;
       z-index:1200;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:flex-end;
-    }
-    .floatBtn{
-      border:none;
-      border-radius: 999px;
-      padding:12px 14px;
+      background:#25D366;
+      color:#fff;
       font-weight:900;
+      border:none;
+      padding:14px 18px;
+      border-radius:999px;
+      box-shadow: 0 16px 36px rgba(0,0,0,.25);
       cursor:pointer;
-      box-shadow: var(--shadow);
       display:flex;
-      gap:10px;
       align-items:center;
-      transition:.2s ease;
-      white-space:nowrap;
+      gap:10px;
     }
-    .floatBtn:hover{ transform:translateY(-1px); }
-    .waBtn{
-      background:#1db954;
-      color:#fff;
-    }
-    .cartBtn{
-      background:#111;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.14);
-    }
-    .dot{
-      width:10px;height:10px;border-radius:50%;
+    .waDot{
+      width:10px; height:10px;
+      border-radius:50%;
       background:#fff;
       opacity:.9;
     }
-    .count{
-      background:var(--red2);
-      color:#fff;
-      padding:4px 9px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-    }
 
-    /* ===== Modal ===== */
-    .modalBack{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.6);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:2000;
-    }
-    .modal{
-      width:min(720px, 96vw);
-      background:#0f1217;
-      color:#fff;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .modalHead{
-      padding:16px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      gap:10px;
-    }
-    .modalHead b{ font-size:16px; }
-    .closeX{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-      font-weight:900;
-    }
-    .modalBody{
-      padding:14px 18px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      max-height:60vh;
-      overflow:auto;
-    }
-    .item{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      padding:12px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:16px;
-      background:rgba(255,255,255,.05);
-    }
-    .itemLeft{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      min-width:0;
-    }
-    .thumb{
-      width:56px;height:56px;border-radius:14px;
-      object-fit:cover;
-      background:#222;
-      border:1px solid rgba(255,255,255,.10);
-      flex:0 0 auto;
-    }
-    .itemInfo{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      min-width:0;
-    }
-    .itemInfo b{
-      font-size:14px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width:300px;
-    }
-    .itemInfo span{
-      font-size:12px;
-      color:rgba(255,255,255,.75);
-      font-weight:600;
-    }
-    .qtyRow{
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .qbtn{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      border-radius:12px;
-      padding:6px 10px;
-      cursor:pointer;
-      font-weight:900;
-    }
-    .removeBtn{
-      background:rgba(225,29,46,.12);
-      border:1px solid rgba(225,29,46,.35);
-      color:#fff;
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-      font-weight:900;
-    }
-    .modalFoot{
-      padding:14px 18px;
-      border-top:1px solid rgba(255,255,255,.10);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .total{
-      font-weight:900;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero h1{ font-size:44px; }
-      .brand{ min-width:auto; }
-      .rightActions{ min-width:auto; }
-    }
-    @media (max-width: 640px){
-      nav{ gap:8px; }
-      nav a{ padding:8px 10px; font-size:13px; }
-      .hero h1{ font-size:36px; }
-      .grid{ grid-template-columns: 1fr; }
-      .brand img{ width:48px;height:48px;border-radius:12px; }
-      .brand .name b{ font-size:13px; }
-      .brand .name span{ font-size:11px; }
+    /* Footer */
+    footer{
+      padding:30px 18px;
+      text-align:center;
+      color:#777;
+      font-size:13px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header class="topbar">
+  <header>
     <div class="navwrap">
       <div class="brand">
-        <img src="logo.png" alt="RedBull Clothing Logo" loading="lazy" decoding="async">
-        <div class="name">
-          <b>RedBull Clothing</b>
-          <span>Streetwear • Punjabi</span>
-        </div>
+        <img src="logo.png" alt="RedBull Clothing Logo">
+        <div class="title">RedBull Clothing<br><span style="font-weight:600; opacity:.8; font-size:12px;">Bangladesh</span></div>
       </div>
 
       <nav>
@@ -566,325 +352,181 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="rightActions">
-        <button class="pill" onclick="openCart()">Cart <span id="topCount" class="count">0</span></button>
-        <button class="pill red" onclick="orderWhatsApp()">Order</button>
+      <div class="nav-cta">
+        <button class="pill" id="viewCartBtn" type="button">
+          Cart <span class="cartCount" id="cartCount">0</span>
+        </button>
+        <button class="pill red" type="button" id="orderTopBtn">Order</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="heroInner">
-      <h1>Power in Every <span class="accent">Thread</span></h1>
-      <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="heroInner">
+        <h1>Power in Every <span>Thread</span></h1>
+        <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
 
-      <div class="ctaRow">
-        <button class="btn btnPrimary" onclick="document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">Shop Now</button>
-        <button class="btn btnGhost" onclick="orderWhatsApp()">Order on WhatsApp</button>
+        <div class="heroBtns">
+          <a class="pill red" href="#shop">Shop Now</a>
+          <button class="pill" id="orderHeroBtn" type="button">Order on WhatsApp</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Shop / Street Collection -->
-  <section id="shop" class="section">
-    <div class="wrap">
-      <h2 class="sectionTitle">Street Collection</h2>
-      <p class="sectionSub">T-Shirts, Hoodies, Pants — clean fits, premium feel. (No Jackets, No Caps)</p>
+    <!-- SHOP / STREET -->
+    <section id="shop" class="section">
+      <div class="sectionHead">
+        <h2>Street Collection</h2>
+        <p>T-Shirts, Hoodies, Pants — clean fits, premium feel.</p>
+      </div>
 
-      <div id="streetGrid" class="grid"></div>
-    </div>
-  </section>
+      <div class="grid" id="streetGrid"></div>
+    </section>
 
-  <!-- Punjabi -->
-  <section id="punjabi" class="section dark">
-    <div class="wrap">
-      <div class="punjabiHero">
+    <!-- PUNJABI -->
+    <section id="punjabi" class="section">
+      <div class="sectionHead">
         <h2>Punjabi Collection</h2>
-        <p>Traditional elegance with modern finishing. Premium fabric, clean tailoring, confident look.</p>
-        <div class="ctaRow" style="justify-content:flex-start;">
-          <button class="btn btnPrimary" onclick="document.querySelector('#punjabiGrid').scrollIntoView({behavior:'smooth'})">View Punjabi</button>
-          <button class="btn btnGhost" onclick="orderWhatsApp()">Order on WhatsApp</button>
-        </div>
+        <p>Traditional elegance with modern finishing.</p>
       </div>
 
-      <div id="punjabiGrid" class="grid"></div>
-    </div>
-  </section>
+      <div class="grid" id="punjabiGrid"></div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section dark">
-    <div class="wrap">
-      <h2 class="sectionTitle" style="color:#fff;">Contact</h2>
-      <p class="sectionSub">Fast orders via WhatsApp. We respond quickly.</p>
-
-      <div class="contactCard">
-        <div class="contactRow">
-          <span class="pill red" style="cursor:default;">WhatsApp</span>
-          <a href="https://wa.me/8801732689835" target="_blank" rel="noopener">+880 1732-689835</a>
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="contactBox">
+        <div>
+          <h3>Contact & Orders</h3>
+          <p>
+            Order directly on WhatsApp. We’ll confirm size, color, delivery, and payment.
+            <br><b>WhatsApp:</b> 01732-689835
+          </p>
         </div>
-        <div class="small">
-          Delivery & payment details will be confirmed on WhatsApp.
-          <br/>© <span id="year"></span> RedBull Clothing — Bangladesh.
+        <div class="contactActions">
+          <button class="pill red" id="orderContactBtn" type="button">Order on WhatsApp</button>
+          <a class="pill" href="#home">Back to Top</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Floating Buttons -->
-  <div class="floatWrap">
-    <button class="floatBtn cartBtn" onclick="openCart()">
-      <span class="dot"></span> Cart <span id="floatCount" class="count">0</span>
-    </button>
-    <button class="floatBtn waBtn" onclick="orderWhatsApp()">
-      Order on WhatsApp
-    </button>
-  </div>
+  <button class="waFloat" id="waFloatBtn" type="button">
+    <span class="waDot"></span> Order on WhatsApp
+  </button>
 
-  <!-- Cart Modal -->
-  <div id="modalBack" class="modalBack" onclick="if(event.target.id==='modalBack') closeCart()">
-    <div class="modal">
-      <div class="modalHead">
-        <b>Your Cart</b>
-        <button class="closeX" onclick="closeCart()">✕</button>
-      </div>
-
-      <div id="cartBody" class="modalBody"></div>
-
-      <div class="modalFoot">
-        <div class="total">Total: <span id="totalPrice">৳ 0</span></div>
-        <div class="ctaRow" style="margin:0; justify-content:flex-end;">
-          <button class="btn btnGhost" onclick="clearCart()">Clear</button>
-          <button class="btn btnPrimary" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <footer>
+    © <span id="year"></span> RedBull Clothing — Built for Bangladesh.
+  </footer>
 
   <script>
-    // ===== Settings =====
-    const WHATSAPP_NUMBER_INT = "8801732689835"; // Bangladesh, without +
-    const CURRENCY = "৳";
+    // ====== CONFIG ======
+    const WHATSAPP_NUMBER = "01732689835"; // no dash
 
-    // ===== Products (Street + Punjabi) =====
-    // Files you must have in repo root: logo.png, urban-hoodie.jpg, punjabi.jpg
-    const PRODUCTS = [
-      // Street (no jacket, no caps)
-      {
-        sku:"TSHIRT-001",
-        name:"Premium T-Shirt",
-        cat:"street",
-        price:890,
-        img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80",
-        meta:"Street",
-        badge:"Best Seller"
-      },
-      {
-        sku:"HOODIE-001",
-        name:"Urban Hoodie",
-        cat:"street",
-        price:1990,
-        img:"urban-hoodie.jpg",
-        meta:"Street",
-        badge:"Best Seller"
-      },
-      {
-        sku:"PANTS-001",
-        name:"Street Pants",
-        cat:"street",
-        price:1590,
-        img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80",
-        meta:"Street",
-        badge:"New"
-      },
+    // IMPORTANT:
+    // Urban hoodie file = "urban-hoodie.jpeg"
+    // Punjabi file = "Punjabi.jpeg" (capital P)
+    const products = [
+      // Street
+      { sku:"TSHIRT-001", name:"Premium T-Shirt", tag:"Street • Best Seller", price:890,  img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80", badge:"Street • Best Seller", group:"street" },
+      { sku:"HOODIE-001", name:"Urban Hoodie",      tag:"Street • Best Seller", price:1990, img:"urban-hoodie.jpeg", badge:"Street • Best Seller", group:"street" },
+      { sku:"PANTS-001",  name:"Street Pants",      tag:"Street • Clean Fit",   price:1590, img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80", badge:"Street • Clean Fit", group:"street" },
 
       // Punjabi
-      {
-        sku:"PUN-001",
-        name:"Classic Punjabi",
-        cat:"punjabi",
-        price:2490,
-        img:"punjabi.jpg",
-        meta:"Punjabi",
-        badge:"Featured"
-      },
-      {
-        sku:"PUN-002",
-        name:"Festive Punjabi",
-        cat:"punjabi",
-        price:2990,
-        img:"https://images.unsplash.com/photo-1603252109360-909baaf261c3?auto=format&fit=crop&w=1200&q=80",
-        meta:"Punjabi",
-        badge:"Best Seller"
-      },
-      {
-        sku:"PUN-003",
-        name:"Limited Drop Punjabi",
-        cat:"punjabi",
-        price:2790,
-        img:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1200&q=80",
-        meta:"Punjabi",
-        badge:"Limited"
-      }
+      { sku:"PUNJABI-001", name:"Classic Punjabi",  tag:"Punjabi • Featured",    price:2490, img:"Punjabi.jpeg", badge:"Punjabi • Featured", group:"punjabi" },
+      { sku:"PUNJABI-002", name:"Festive Punjabi",  tag:"Punjabi • Best Seller", price:2990, img:"Punjabi.jpeg", badge:"Punjabi • Best Seller", group:"punjabi" },
+      { sku:"PUNJABI-003", name:"Premium Punjabi",  tag:"Punjabi • New",         price:2790, img:"Punjabi.jpeg", badge:"Punjabi • New", group:"punjabi" },
     ];
 
-    // ===== Render =====
-    const streetGrid = document.getElementById("streetGrid");
-    const punjabiGrid = document.getElementById("punjabiGrid");
+    // ====== CART (simple) ======
+    const cart = new Map(); // sku -> qty
+    const cartCountEl = document.getElementById("cartCount");
 
-    function cardTemplate(p){
-      return `
-        <div class="card">
-          <div class="badge">${p.meta} • ${p.badge}</div>
-          <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">
-          <div class="cardBody">
-            <h3>${p.name}</h3>
-            <p class="meta">${p.meta} • ${p.badge}</p>
-            <div class="row">
-              <div class="price">${CURRENCY} ${Number(p.price).toLocaleString("en-US")}</div>
-              <button class="addBtn" onclick="addToCart('${p.sku}')">Add</button>
-            </div>
+    function updateCartCount(){
+      let total = 0;
+      for (const qty of cart.values()) total += qty;
+      cartCountEl.textContent = total;
+    }
+
+    function moneyBDT(n){
+      return "৳ " + Number(n).toLocaleString("en-US");
+    }
+
+    function buildCard(p){
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="badge">${p.badge}</div>
+        <div class="thumb">
+          <img src="${p.img}" alt="${p.name}" loading="lazy"
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Image+Not+Found';">
+        </div>
+        <div class="content">
+          <p class="name">${p.name}</p>
+          <p class="meta">${p.tag}</p>
+          <div class="row">
+            <div class="price">${moneyBDT(p.price)}</div>
+            <button class="addBtn" type="button" data-sku="${p.sku}">Add</button>
           </div>
         </div>
       `;
+      card.querySelector(".addBtn").addEventListener("click", () => {
+        cart.set(p.sku, (cart.get(p.sku) || 0) + 1);
+        updateCartCount();
+      });
+      return card;
     }
 
-    function renderProducts(){
-      const street = PRODUCTS.filter(p=>p.cat==="street");
-      const punjabi = PRODUCTS.filter(p=>p.cat==="punjabi");
-      streetGrid.innerHTML = street.map(cardTemplate).join("");
-      punjabiGrid.innerHTML = punjabi.map(cardTemplate).join("");
+    function render(){
+      const streetGrid = document.getElementById("streetGrid");
+      const punjabiGrid = document.getElementById("punjabiGrid");
+      streetGrid.innerHTML = "";
+      punjabiGrid.innerHTML = "";
+
+      products.filter(p => p.group === "street").forEach(p => streetGrid.appendChild(buildCard(p)));
+      products.filter(p => p.group === "punjabi").forEach(p => punjabiGrid.appendChild(buildCard(p)));
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      updateCartCount();
     }
 
-    // ===== Cart =====
-    let cart = JSON.parse(localStorage.getItem("rbc_cart") || "{}"); // { sku: qty }
-
-    function saveCart(){
-      localStorage.setItem("rbc_cart", JSON.stringify(cart));
-      updateCounts();
-    }
-
-    function updateCounts(){
-      const count = Object.values(cart).reduce((a,b)=>a+b,0);
-      document.getElementById("topCount").textContent = count;
-      document.getElementById("floatCount").textContent = count;
-    }
-
-    function addToCart(sku){
-      cart[sku] = (cart[sku] || 0) + 1;
-      saveCart();
-      // small feedback: open cart on first add
-      if(Object.values(cart).reduce((a,b)=>a+b,0) === 1) openCart();
-    }
-
-    function decQty(sku){
-      if(!cart[sku]) return;
-      cart[sku]--;
-      if(cart[sku] <= 0) delete cart[sku];
-      saveCart();
-      renderCart();
-    }
-
-    function incQty(sku){
-      cart[sku] = (cart[sku] || 0) + 1;
-      saveCart();
-      renderCart();
-    }
-
-    function removeItem(sku){
-      delete cart[sku];
-      saveCart();
-      renderCart();
-    }
-
-    function clearCart(){
-      cart = {};
-      saveCart();
-      renderCart();
-    }
-
-    function openCart(){
-      document.getElementById("modalBack").style.display="flex";
-      renderCart();
-    }
-    function closeCart(){
-      document.getElementById("modalBack").style.display="none";
-    }
-
-    function renderCart(){
-      const body = document.getElementById("cartBody");
-      const entries = Object.entries(cart);
-
-      if(entries.length === 0){
-        body.innerHTML = `<div class="small">Your cart is empty. Add items from Shop.</div>`;
-        document.getElementById("totalPrice").textContent = `${CURRENCY} 0`;
-        return;
-      }
-
+    // ====== WhatsApp Order ======
+    function buildOrderMessage(){
+      if (cart.size === 0) return "Hello! I want to place an order from RedBull Clothing.";
+      let lines = ["Hello! I want to place an order from RedBull Clothing:", ""];
       let total = 0;
-
-      body.innerHTML = entries.map(([sku, qty])=>{
-        const p = PRODUCTS.find(x=>x.sku===sku);
-        if(!p) return "";
-        total += p.price * qty;
-
-        return `
-          <div class="item">
-            <div class="itemLeft">
-              <img class="thumb" src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">
-              <div class="itemInfo">
-                <b>${p.name}</b>
-                <span>${CURRENCY} ${Number(p.price).toLocaleString("en-US")} • Qty: ${qty}</span>
-              </div>
-            </div>
-            <div class="qtyRow">
-              <button class="qbtn" onclick="decQty('${sku}')">−</button>
-              <button class="qbtn" onclick="incQty('${sku}')">+</button>
-              <button class="removeBtn" onclick="removeItem('${sku}')">Remove</button>
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      document.getElementById("totalPrice").textContent = `${CURRENCY} ${Number(total).toLocaleString("en-US")}`;
-    }
-
-    // ===== WhatsApp =====
-    function orderWhatsApp(){
-      window.open(`https://wa.me/${WHATSAPP_NUMBER_INT}`, "_blank");
-    }
-
-    function checkoutWhatsApp(){
-      const entries = Object.entries(cart);
-      if(entries.length === 0){
-        orderWhatsApp();
-        return;
-      }
-      const lines = [];
-      let total = 0;
-
-      entries.forEach(([sku, qty])=>{
-        const p = PRODUCTS.find(x=>x.sku===sku);
-        if(!p) return;
+      for (const [sku, qty] of cart.entries()){
+        const p = products.find(x => x.sku === sku);
+        if (!p) continue;
         const subtotal = p.price * qty;
         total += subtotal;
-        lines.push(`${p.name} (x${qty}) — ${CURRENCY} ${subtotal}`);
-      });
-
-      const msg =
-        `Hello RedBull Clothing!%0A%0A` +
-        `I want to order:%0A` +
-        lines.map(l=>`- ${encodeURIComponent(l)}`).join("%0A") +
-        `%0A%0ATotal: ${encodeURIComponent(CURRENCY + " " + total)}%0A` +
-        `Delivery area: ____%0AName: ____%0APhone: ____`;
-
-      window.open(`https://wa.me/${WHATSAPP_NUMBER_INT}?text=${msg}`, "_blank");
+        lines.push(`• ${p.name} (${sku}) x ${qty} = ${moneyBDT(subtotal)}`);
+      }
+      lines.push("");
+      lines.push(`Total: ${moneyBDT(total)}`);
+      lines.push("");
+      lines.push("Please confirm size, color, delivery & payment. Thanks!");
+      return lines.join("\n");
     }
 
-    // ===== Init =====
-    document.getElementById("year").textContent = new Date().getFullYear();
-    renderProducts();
-    updateCounts();
+    function openWhatsApp(){
+      const text = encodeURIComponent(buildOrderMessage());
+      const url = `https://wa.me/88${WHATSAPP_NUMBER}?text=${text}`;
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("orderHeroBtn").addEventListener("click", openWhatsApp);
+    document.getElementById("orderTopBtn").addEventListener("click", openWhatsApp);
+    document.getElementById("orderContactBtn").addEventListener("click", openWhatsApp);
+    document.getElementById("waFloatBtn").addEventListener("click", openWhatsApp);
+
+    document.getElementById("viewCartBtn").addEventListener("click", () => {
+      alert(buildOrderMessage());
+    });
+
+    render();
   </script>
 
 </body>
