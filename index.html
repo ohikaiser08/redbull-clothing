@@ -5,48 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedBull Clothing</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#fff6ea;
-      --card:#ffffff;
-      --text:#111;
-      --muted:#666;
-      --red:#e11b22;
-      --dark:#0b0f14;
-      --shadow: 0 14px 40px rgba(0,0,0,.12);
-      --softshadow: 0 10px 24px rgba(0,0,0,.10);
-      --radius: 22px;
+      --bg:#0b0f14;
+      --panel: rgba(255,255,255,.06);
+      --text:#e9eef7;
+      --muted: rgba(233,238,247,.72);
+      --line: rgba(255,255,255,.10);
+      --red:#ff3b3f;
+      --red2:#d41414;
+      --cream:#fff6ea;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:'Poppins',sans-serif;
-      background:var(--bg);
-      color:var(--text);
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    /* HEADER */
-    header{
-      position:fixed;
-      left:0; top:0; right:0;
-      z-index:1000;
-      background:linear-gradient(180deg, rgba(0,0,0,.88), rgba(0,0,0,.65));
-      border-bottom:1px solid rgba(225,27,34,.6);
-      backdrop-filter: blur(8px);
+    /* ===== Header ===== */
+    .topbar{
+      position:sticky; top:0; z-index:1000;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,0,0,.25);
     }
     .navwrap{
       max-width:1200px;
       margin:0 auto;
-      padding:12px 18px;
+      padding:14px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
+      gap:14px;
     }
     .brand{
       display:flex;
@@ -54,296 +52,380 @@
       gap:12px;
       min-width:220px;
     }
-    .brand img{
-      width:52px;
-      height:52px;
-      object-fit:cover;
-      border-radius:14px;
-      border:2px solid rgba(255,255,255,.5);
-      box-shadow: 0 10px 22px rgba(0,0,0,.25);
-      background:#fff;
+    .brand .logo{
+      width:44px; height:44px;
+      border-radius:12px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      flex:0 0 auto;
     }
-    .brand .title{
-      color:#fff;
-      font-weight:700;
-      letter-spacing:.3px;
-      line-height:1.1;
-      font-size:16px;
-    }
+    .brand .txt{line-height:1.05}
+    .brand .txt strong{display:block; font-size:16px; letter-spacing:.2px}
+    .brand .txt span{display:block; font-size:12px; color: var(--muted); margin-top:2px}
+
     nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      display:flex; gap:26px; align-items:center; justify-content:center; flex:1;
     }
     nav a{
-      color:#fff;
-      font-weight:600;
-      opacity:.92;
-      padding:10px 12px;
+      font-weight:800; font-size:14px;
+      color: rgba(255,255,255,.9);
+      opacity:.9;
+      padding:10px 10px;
       border-radius:12px;
       transition:.2s ease;
     }
-    nav a:hover{background:rgba(255,255,255,.10); opacity:1}
-    .nav-cta{
-      display:flex; gap:10px; align-items:center;
+    nav a:hover{background: rgba(255,255,255,.08); opacity:1}
+
+    .navRight{
+      display:flex; align-items:center; gap:10px;
+      min-width:220px; justify-content:flex-end;
     }
     .pill{
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      padding:10px 14px;
+      border:none; cursor:pointer;
       border-radius:999px;
-      font-weight:600;
+      padding:10px 14px;
+      font-weight:900;
+      font-size:13px;
+      background: rgba(255,255,255,.10);
+      color:#fff;
       transition:.2s ease;
-      cursor:pointer;
-    }
-    .pill:hover{transform:translateY(-1px); background:rgba(255,255,255,.12)}
-    .pill.red{
-      border-color: rgba(225,27,34,.65);
-      background: rgba(225,27,34,.88);
-    }
-    .pill.red:hover{background: rgba(225,27,34,1)}
-    .cartCount{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      min-width:24px;
-      height:24px;
-      padding:0 7px;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .pill:hover{transform:translateY(-1px)}
+    .pill.red{
+      background: linear-gradient(135deg,var(--red2),var(--red));
+      box-shadow: 0 12px 35px rgba(255,59,63,.25);
+    }
+    .countBadge{
+      min-width:22px; height:22px; padding:0 7px;
       border-radius:999px;
-      background:rgba(255,255,255,.16);
-      margin-left:8px;
-      font-size:12px;
-      font-weight:700;
+      background: rgba(255,255,255,.18);
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:900;
     }
 
-    /* HERO */
+    /* ===== Hero ===== */
     .hero{
-      min-height:100vh;
-      padding-top:92px;
+      position:relative;
+      min-height: 86vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      position:relative;
-      overflow:hidden;
+      padding: 90px 18px 70px;
+      border-bottom:1px solid rgba(255,255,255,.06);
 
-      /* hero background (safe: external) */
       background-image:
-        linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)),
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
         url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80');
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
     }
     .heroInner{
-      width:min(1080px, 92vw);
+      max-width: 1050px;
+      width:100%;
       text-align:center;
-      color:#fff;
-      padding:56px 18px 66px;
     }
     .hero h1{
-      margin:0 0 12px;
-      font-size:clamp(34px, 5vw, 58px);
-      line-height:1.05;
-      font-weight:800;
+      margin:0;
+      font-size: clamp(34px, 5vw, 64px);
       letter-spacing:.2px;
-      text-shadow: 0 14px 35px rgba(0,0,0,.35);
+      font-weight:900;
+      line-height:1.05;
     }
-    .hero h1 span{color:#ff3b3f}
+    .hero h1 span{color: var(--red)}
     .hero p{
-      margin:0 auto 22px;
-      max-width:780px;
-      opacity:.92;
-      font-size:clamp(14px, 1.5vw, 18px);
-      line-height:1.6;
+      margin:16px auto 22px;
+      max-width: 760px;
+      color: rgba(255,255,255,.86);
+      font-size: 15px;
+      line-height:1.7;
     }
     .heroBtns{
       display:flex;
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
-      margin-top:12px;
+      margin-top:10px;
     }
 
-    /* SECTIONS */
+    /* ===== Sections ===== */
     .section{
-      max-width:1200px;
-      margin:0 auto;
-      padding:70px 18px;
+      padding: 70px 18px;
+      background: var(--cream);
+      color:#111;
     }
-    .sectionHead{
-      text-align:center;
-      margin-bottom:28px;
+    .section.dark{
+      background: #070a0e;
+      color: var(--text);
     }
-    .sectionHead h2{
-      margin:0 0 6px;
-      font-size:clamp(26px, 3vw, 40px);
-      font-weight:800;
-    }
-    .sectionHead p{
+    .container{max-width:1200px; margin:0 auto}
+    .secHead{text-align:center; margin-bottom:24px}
+    .secHead h2{
       margin:0;
-      color:var(--muted);
-      font-size:14px;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight:900;
     }
+    .secHead p{
+      margin:10px 0 0;
+      color: rgba(17,17,17,.70);
+      font-weight:600;
+    }
+    .dark .secHead p{color: rgba(233,238,247,.70)}
 
-    /* Cards Grid */
     .grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap:20px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
-      .brand .title{display:none;}
-    }
-    @media (max-width: 620px){
-      nav{gap:6px}
-      nav a{padding:8px 10px}
-      .grid{grid-template-columns: 1fr;}
+      gap:22px;
+      margin-top:26px;
     }
 
     .card{
-      background:var(--card);
-      border-radius:var(--radius);
+      background: rgba(255,255,255,.95);
+      border-radius: 22px;
       overflow:hidden;
-      box-shadow:var(--softshadow);
-      border:1px solid rgba(0,0,0,.06);
-      transition:.22s ease;
+      box-shadow: 0 20px 55px rgba(0,0,0,.12);
+      border: 1px solid rgba(0,0,0,.06);
       position:relative;
     }
-    .card:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
-    .badge{
-      position:absolute;
-      top:14px; left:14px;
-      background:rgba(0,0,0,.68);
+    .dark .card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+    }
+    .tag{
+      position:absolute; top:14px; left:14px;
+      background: rgba(0,0,0,.65);
       color:#fff;
       padding:8px 12px;
       border-radius:999px;
       font-size:12px;
-      font-weight:700;
-      letter-spacing:.2px;
+      font-weight:900;
       z-index:2;
-      backdrop-filter: blur(6px);
     }
-    .thumb{
-      height:250px;
-      background:#eee;
+
+    /* ===== Hoodie Slider Card ===== */
+    .slider{
+      height: 230px;
+      position:relative;
       overflow:hidden;
+      background: rgba(0,0,0,.10);
     }
-    .thumb img{
+    .slideTrack{
+      height:100%;
+      width:100%;
+      position:relative;
+    }
+    .slideTrack img{
+      position:absolute;
+      inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
+      opacity:0;
+      transition: opacity .35s ease;
     }
-    .content{
-      padding:16px 16px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .name{
-      font-size:18px;
-      font-weight:800;
-      margin:0;
-    }
-    .meta{
-      color:var(--muted);
-      font-size:13px;
-      margin:0;
-    }
-    .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-top:6px;
-    }
-    .price{
-      font-weight:900;
-      color:var(--red);
-      font-size:18px;
-    }
-    .addBtn{
-      border:none;
-      background:#0f1218;
-      color:#fff;
-      font-weight:800;
-      padding:10px 16px;
+    .slideTrack img.active{opacity:1}
+    .arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:38px; height:38px;
+      border:none; cursor:pointer;
       border-radius:14px;
+      background: rgba(0,0,0,.45);
+      color:#fff;
+      font-weight:900;
+      z-index:5;
+    }
+    .arrow:hover{background: rgba(0,0,0,.62)}
+    .arrow.left{left:10px}
+    .arrow.right{right:10px}
+
+    .dots{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:10px;
+      display:flex;
+      gap:6px;
+      z-index:6;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    .dot{
+      width:8px; height:8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.35);
       cursor:pointer;
+    }
+    .dot.active{background: rgba(255,255,255,.95)}
+    /* ===== End Slider ===== */
+
+    .thumb{height: 230px; background: rgba(0,0,0,.08); overflow:hidden}
+    .thumb img{width:100%; height:100%; object-fit:cover}
+    .cardBody{
+      padding:18px 18px 16px;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .title{margin:0; font-size:18px; font-weight:900}
+    .meta{
+      margin:0; font-size:13px;
+      color: rgba(17,17,17,.65);
+      display:flex; gap:10px; flex-wrap:wrap;
+      font-weight:600;
+    }
+    .dark .meta{color: rgba(233,238,247,.70)}
+    .row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-top:6px;
+    }
+    .price{font-weight:900; color: var(--red2); font-size:18px}
+    .addBtn{
+      border:none; cursor:pointer;
+      background: rgba(0,0,0,.92);
+      color:#fff; font-weight:900;
+      border-radius: 16px;
+      padding:12px 16px;
       transition:.2s ease;
     }
-    .addBtn:hover{transform:translateY(-1px); background:#000}
+    .addBtn:hover{transform:translateY(-1px)}
+    .dark .addBtn{background: rgba(255,255,255,.10)}
 
-    /* Contact */
-    .contactBox{
-      background:#fff;
-      border-radius:var(--radius);
-      box-shadow:var(--softshadow);
-      border:1px solid rgba(0,0,0,.06);
-      padding:24px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:center;
-    }
-    @media (max-width: 820px){
-      .contactBox{grid-template-columns:1fr}
-    }
-    .contactBox h3{margin:0 0 6px; font-size:22px}
-    .contactBox p{margin:0; color:var(--muted); line-height:1.7}
-    .contactActions{
-      display:flex;
-      gap:10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-    }
-
-    /* Floating WhatsApp button */
-    .waFloat{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      z-index:1200;
-      background:#25D366;
-      color:#fff;
-      font-weight:900;
-      border:none;
-      padding:14px 18px;
-      border-radius:999px;
-      box-shadow: 0 16px 36px rgba(0,0,0,.25);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .waDot{
-      width:10px; height:10px;
-      border-radius:50%;
-      background:#fff;
-      opacity:.9;
-    }
-
-    /* Footer */
-    footer{
-      padding:30px 18px;
+    /* ===== Footer ===== */
+    .footer{
+      padding:22px 18px;
       text-align:center;
-      color:#777;
-      font-size:13px;
+      color: rgba(233,238,247,.60);
+      border-top:1px solid rgba(255,255,255,.08);
+      background:#070a0e;
+    }
+
+    /* ===== Cart Drawer (with +/-) ===== */
+    .cartDrawerOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      z-index:2000;
+      display:none;
+    }
+    .cartDrawer{
+      position:fixed;
+      top:0; right:0;
+      height:100vh;
+      width:min(420px, 92vw);
+      background:#0b0f14;
+      color:#fff;
+      z-index:2100;
+      transform:translateX(110%);
+      transition:.25s ease;
+      box-shadow: -20px 0 60px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+    }
+    body.cartOpen .cartDrawerOverlay{display:block;}
+    body.cartOpen .cartDrawer{transform:translateX(0);}
+
+    .cartHead{
+      padding:16px 16px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .cartHead h3{margin:0; font-size:18px}
+    .cartClose{
+      border:none; background:rgba(255,255,255,.10);
+      color:#fff; padding:10px 12px;
+      border-radius:12px; cursor:pointer; font-weight:900;
+    }
+    .cartBody{padding:14px 16px; overflow:auto; flex:1}
+    .cartEmpty{margin:0; opacity:.8; line-height:1.7}
+
+    .cartItem{
+      display:grid;
+      grid-template-columns: 64px 1fr;
+      gap:12px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .cartItemImg{
+      width:64px; height:64px;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+    }
+    .cartItemImg img{width:100%; height:100%; object-fit:cover;}
+    .cartItemTop{display:flex; justify-content:space-between; gap:10px}
+    .cartItemName{font-weight:900; font-size:14px; margin:0}
+    .cartItemSku{font-size:12px; opacity:.75; margin:3px 0 0}
+    .cartItemPrice{font-weight:900; color:var(--red); font-size:14px; white-space:nowrap}
+
+    .qtyRow{
+      margin-top:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .qtyControls{display:flex; align-items:center; gap:8px}
+    .qbtn{
+      width:34px; height:34px;
+      border:none; border-radius:12px;
+      background:rgba(255,255,255,.10);
+      color:#fff; font-weight:900;
+      cursor:pointer;
+    }
+    .qnum{min-width:32px; text-align:center; font-weight:900}
+    .removeBtn{
+      border:none;
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      padding:8px 10px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:900;
+    }
+
+    .cartFoot{
+      padding:14px 16px 16px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .totalRow{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; font-weight:900; margin-bottom:12px;
+    }
+    .cartActions{display:flex; gap:10px; flex-wrap:wrap}
+    .cartActions .pill{flex:1}
+
+    @media (max-width: 980px){
+      nav{display:none}
+      .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
+      .brand{min-width:auto}
+      .navRight{min-width:auto}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns: 1fr;}
+      .thumb,.slider{height: 210px;}
+      .hero{min-height:80vh}
     }
   </style>
 </head>
 
 <body>
 
-  <header>
+  <header class="topbar">
     <div class="navwrap">
-      <div class="brand">
-        <img src="logo.png" alt="RedBull Clothing Logo">
-        <div class="title">RedBull Clothing<br><span style="font-weight:600; opacity:.8; font-size:12px;">Bangladesh</span></div>
-      </div>
+      <a class="brand" href="#home">
+        <div class="logo">
+          <img src="logo.png" alt="RedBull Clothing Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="txt">
+          <strong>RedBull Clothing</strong>
+          <span>Bangladesh</span>
+        </div>
+      </a>
 
       <nav>
         <a href="#home">Home</a>
@@ -352,181 +434,399 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="nav-cta">
+      <div class="navRight">
         <button class="pill" id="viewCartBtn" type="button">
-          Cart <span class="cartCount" id="cartCount">0</span>
+          Cart <span class="countBadge" id="cartCount">0</span>
         </button>
-        <button class="pill red" type="button" id="orderTopBtn">Order</button>
+        <button class="pill red" id="orderBtn" type="button">Order</button>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="heroInner">
-        <h1>Power in Every <span>Thread</span></h1>
-        <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
+  <section id="home" class="hero">
+    <div class="heroInner">
+      <h1>Power in Every <span>Thread</span></h1>
+      <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
 
-        <div class="heroBtns">
-          <a class="pill red" href="#shop">Shop Now</a>
-          <button class="pill" id="orderHeroBtn" type="button">Order on WhatsApp</button>
-        </div>
+      <div class="heroBtns">
+        <a class="pill red" href="#shop">Shop Now</a>
+        <button class="pill" id="orderWhatsAppBtn" type="button">Order on WhatsApp</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SHOP / STREET -->
-    <section id="shop" class="section">
-      <div class="sectionHead">
+  <section id="shop" class="section">
+    <div class="container">
+      <div class="secHead">
         <h2>Street Collection</h2>
         <p>T-Shirts, Hoodies, Pants — clean fits, premium feel.</p>
       </div>
-
       <div class="grid" id="streetGrid"></div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PUNJABI -->
-    <section id="punjabi" class="section">
-      <div class="sectionHead">
+  <section id="punjabi" class="section dark">
+    <div class="container">
+      <div class="secHead">
         <h2>Punjabi Collection</h2>
         <p>Traditional elegance with modern finishing.</p>
       </div>
-
       <div class="grid" id="punjabiGrid"></div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="contactBox">
-        <div>
-          <h3>Contact & Orders</h3>
-          <p>
-            Order directly on WhatsApp. We’ll confirm size, color, delivery, and payment.
-            <br><b>WhatsApp:</b> 01732-689835
-          </p>
-        </div>
-        <div class="contactActions">
-          <button class="pill red" id="orderContactBtn" type="button">Order on WhatsApp</button>
-          <a class="pill" href="#home">Back to Top</a>
-        </div>
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="secHead">
+        <h2>Contact</h2>
+        <p>Message us for sizing, color, delivery & payment.</p>
       </div>
-    </section>
-  </main>
 
-  <button class="waFloat" id="waFloatBtn" type="button">
-    <span class="waDot"></span> Order on WhatsApp
-  </button>
+      <div style="max-width:900px;margin:0 auto;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.10);">
+        <h3 style="margin:0 0 8px;font-weight:900;">Order Support</h3>
+        <p style="margin:0;color:rgba(17,17,17,.70);line-height:1.7;font-weight:600;">
+          Fastest way: open <b>Cart</b> → click <b>Order on WhatsApp</b>. We'll confirm size, color, delivery address and payment.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    © <span id="year"></span> RedBull Clothing — Built for Bangladesh.
+  <footer class="footer">
+    © <span id="year"></span> RedBull Clothing — All rights reserved.
   </footer>
 
+  <!-- Cart Drawer -->
+  <div class="cartDrawerOverlay" id="cartOverlay"></div>
+  <aside class="cartDrawer" id="cartDrawer" aria-label="Cart">
+    <div class="cartHead">
+      <h3>Your Cart</h3>
+      <button class="cartClose" id="cartCloseBtn" type="button">Close</button>
+    </div>
+    <div class="cartBody" id="cartItems"></div>
+    <div class="cartFoot">
+      <div class="totalRow">
+        <div>Total</div>
+        <div id="cartTotal">৳ 0</div>
+      </div>
+      <div class="cartActions">
+        <button class="pill" id="clearCartBtn" type="button">Clear</button>
+        <button class="pill red" id="checkoutBtn" type="button">Order on WhatsApp</button>
+      </div>
+    </div>
+  </aside>
+
   <script>
-    // ====== CONFIG ======
-    const WHATSAPP_NUMBER = "01732689835"; // no dash
+    // ✅ Put your WhatsApp number with country code (no +). Example: 8801XXXXXXXXX
+    const WHATSAPP_NUMBER = "8801XXXXXXXXX";
 
-    // IMPORTANT:
-    // Urban hoodie file = "urban-hoodie.jpeg"
-    // Punjabi file = "Punjabi.jpeg" (capital P)
-    const products = [
-      // Street
-      { sku:"TSHIRT-001", name:"Premium T-Shirt", tag:"Street • Best Seller", price:890,  img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1200&q=80", badge:"Street • Best Seller", group:"street" },
-      { sku:"HOODIE-001", name:"Urban Hoodie",      tag:"Street • Best Seller", price:1990, img:"urban-hoodie.jpeg", badge:"Street • Best Seller", group:"street" },
-      { sku:"PANTS-001",  name:"Street Pants",      tag:"Street • Clean Fit",   price:1590, img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80", badge:"Street • Clean Fit", group:"street" },
-
-      // Punjabi
-      { sku:"PUNJABI-001", name:"Classic Punjabi",  tag:"Punjabi • Featured",    price:2490, img:"Punjabi.jpeg", badge:"Punjabi • Featured", group:"punjabi" },
-      { sku:"PUNJABI-002", name:"Festive Punjabi",  tag:"Punjabi • Best Seller", price:2990, img:"Punjabi.jpeg", badge:"Punjabi • Best Seller", group:"punjabi" },
-      { sku:"PUNJABI-003", name:"Premium Punjabi",  tag:"Punjabi • New",         price:2790, img:"Punjabi.jpeg", badge:"Punjabi • New", group:"punjabi" },
+    // ✅ EXACT file names from your repo (root)
+    const HOODIE_SLIDES = [
+      "hoodie jpg 01 (1).jpeg",
+      "hoodie jpg 02.jpeg",
+      "hoodie jpg 03.jpeg",
+      "hoodie jpg 04.jpeg",
+      "hoodie jpg 05.jpeg",
+      "hoodie jpg 06.jpeg",
+      "hoodie jpg 07.jpeg",
+      "hoodie jpg 08.jpeg",
     ];
 
-    // ====== CART (simple) ======
-    const cart = new Map(); // sku -> qty
+    // Products
+    const products = [
+      { sku:"TSHIRT-001", name:"Premium T-Shirt", cat:"street", tag:"Street • Best Seller", price:890,
+        img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80"
+      },
+
+      // Urban Hoodie uses SLIDER (no single img needed here)
+      { sku:"HOODIE-001", name:"Urban Hoodie", cat:"street", tag:"Street • Best Seller", price:1990,
+        slider:true
+      },
+
+      { sku:"PANTS-001", name:"Street Pants", cat:"street", tag:"Street • Clean Fit", price:1590,
+        img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1400&q=80"
+      },
+
+      { sku:"PUNJABI-001", name:"Classic Punjabi", cat:"punjabi", tag:"Punjabi • Featured", price:2490,
+        img:"Punjabi.jpeg"
+      },
+      { sku:"PUNJABI-002", name:"Festive Punjabi", cat:"punjabi", tag:"Punjabi • Best Seller", price:2990,
+        img:"Punjabi.jpeg"
+      },
+      { sku:"PUNJABI-003", name:"Premium Punjabi", cat:"punjabi", tag:"Punjabi • Premium", price:3490,
+        img:"Punjabi.jpeg"
+      },
+    ];
+
+    const streetGrid = document.getElementById("streetGrid");
+    const punjabiGrid = document.getElementById("punjabiGrid");
     const cartCountEl = document.getElementById("cartCount");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cart = new Map(); // sku -> qty
+
+    function moneyBDT(n){ return "৳ " + Number(n).toLocaleString("en-US"); }
 
     function updateCartCount(){
-      let total = 0;
-      for (const qty of cart.values()) total += qty;
-      cartCountEl.textContent = total;
+      let count = 0;
+      for(const qty of cart.values()) count += qty;
+      cartCountEl.textContent = count;
     }
 
-    function moneyBDT(n){
-      return "৳ " + Number(n).toLocaleString("en-US");
+    function addToCart(sku){
+      const current = cart.get(sku) || 0;
+      cart.set(sku, current + 1);
+      updateCartCount();
+      renderCart();
+      openCart(); // smoother UX
     }
 
-    function buildCard(p){
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="badge">${p.badge}</div>
+    function buildNormalCard(p){
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <div class="tag">${p.tag}</div>
         <div class="thumb">
-          <img src="${p.img}" alt="${p.name}" loading="lazy"
-            onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Image+Not+Found';">
+          <img src="${p.img}" alt="${p.name}"
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Image+Not+Found';">
         </div>
-        <div class="content">
-          <p class="name">${p.name}</p>
+        <div class="cardBody">
+          <p class="title">${p.name}</p>
           <p class="meta">${p.tag}</p>
           <div class="row">
             <div class="price">${moneyBDT(p.price)}</div>
-            <button class="addBtn" type="button" data-sku="${p.sku}">Add</button>
+            <button class="addBtn" type="button">Add</button>
           </div>
         </div>
       `;
-      card.querySelector(".addBtn").addEventListener("click", () => {
-        cart.set(p.sku, (cart.get(p.sku) || 0) + 1);
-        updateCartCount();
-      });
-      return card;
+      div.querySelector(".addBtn").addEventListener("click", () => addToCart(p.sku));
+      return div;
     }
 
-    function render(){
-      const streetGrid = document.getElementById("streetGrid");
-      const punjabiGrid = document.getElementById("punjabiGrid");
+    function buildHoodieSliderCard(p){
+      const div = document.createElement("div");
+      div.className = "card";
+
+      const imgsHtml = HOODIE_SLIDES.map((src,i)=>(
+        `<img src="${src}" alt="Urban Hoodie ${i+1}" class="${i===0?'active':''}"
+              onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Hoodie+Image+Missing';">`
+      )).join("");
+
+      const dotsHtml = HOODIE_SLIDES.map((_,i)=>(
+        `<span class="dot ${i===0?'active':''}" data-i="${i}"></span>`
+      )).join("");
+
+      div.innerHTML = `
+        <div class="tag">${p.tag}</div>
+
+        <div class="slider" data-slider="hoodie">
+          <button class="arrow left" type="button" aria-label="Previous">‹</button>
+          <button class="arrow right" type="button" aria-label="Next">›</button>
+
+          <div class="slideTrack">
+            ${imgsHtml}
+          </div>
+
+          <div class="dots">${dotsHtml}</div>
+        </div>
+
+        <div class="cardBody">
+          <p class="title">${p.name}</p>
+          <p class="meta">${p.tag}</p>
+          <div class="row">
+            <div class="price">${moneyBDT(p.price)}</div>
+            <button class="addBtn" type="button">Add</button>
+          </div>
+        </div>
+      `;
+
+      div.querySelector(".addBtn").addEventListener("click", () => addToCart(p.sku));
+
+      // slider logic
+      const images = Array.from(div.querySelectorAll(".slideTrack img"));
+      const dots = Array.from(div.querySelectorAll(".dot"));
+      const btnPrev = div.querySelector(".arrow.left");
+      const btnNext = div.querySelector(".arrow.right");
+
+      let idx = 0;
+      let timer = null;
+
+      function show(i){
+        idx = (i + images.length) % images.length;
+        images.forEach((im,k)=>im.classList.toggle("active", k===idx));
+        dots.forEach((d,k)=>d.classList.toggle("active", k===idx));
+      }
+      function next(){ show(idx+1); }
+      function prev(){ show(idx-1); }
+
+      btnNext.addEventListener("click", ()=>{ next(); restart(); });
+      btnPrev.addEventListener("click", ()=>{ prev(); restart(); });
+      dots.forEach(d=>{
+        d.addEventListener("click", ()=>{
+          show(parseInt(d.dataset.i,10));
+          restart();
+        });
+      });
+
+      function start(){
+        timer = setInterval(next, 2800);
+      }
+      function stop(){
+        if(timer) clearInterval(timer);
+        timer = null;
+      }
+      function restart(){
+        stop();
+        start();
+      }
+
+      // pause on hover
+      div.querySelector(".slider").addEventListener("mouseenter", stop);
+      div.querySelector(".slider").addEventListener("mouseleave", start);
+
+      start();
+
+      return div;
+    }
+
+    function renderProducts(){
       streetGrid.innerHTML = "";
       punjabiGrid.innerHTML = "";
 
-      products.filter(p => p.group === "street").forEach(p => streetGrid.appendChild(buildCard(p)));
-      products.filter(p => p.group === "punjabi").forEach(p => punjabiGrid.appendChild(buildCard(p)));
+      products.filter(p => p.cat === "street").forEach(p => {
+        if(p.slider) streetGrid.appendChild(buildHoodieSliderCard(p));
+        else streetGrid.appendChild(buildNormalCard(p));
+      });
 
-      document.getElementById("year").textContent = new Date().getFullYear();
-      updateCartCount();
+      products.filter(p => p.cat === "punjabi").forEach(p => punjabiGrid.appendChild(buildNormalCard(p)));
     }
 
-    // ====== WhatsApp Order ======
-    function buildOrderMessage(){
-      if (cart.size === 0) return "Hello! I want to place an order from RedBull Clothing.";
-      let lines = ["Hello! I want to place an order from RedBull Clothing:", ""];
-      let total = 0;
-      for (const [sku, qty] of cart.entries()){
-        const p = products.find(x => x.sku === sku);
-        if (!p) continue;
-        const subtotal = p.price * qty;
-        total += subtotal;
-        lines.push(`• ${p.name} (${sku}) x ${qty} = ${moneyBDT(subtotal)}`);
+    // ===== Cart Drawer =====
+    const overlay = document.getElementById("cartOverlay");
+    function openCart(){ document.body.classList.add("cartOpen"); renderCart(); }
+    function closeCart(){ document.body.classList.remove("cartOpen"); }
+
+    document.getElementById("viewCartBtn").addEventListener("click", openCart);
+    document.getElementById("orderBtn").addEventListener("click", openCart);
+    document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
+    overlay.addEventListener("click", closeCart);
+
+    document.getElementById("clearCartBtn").addEventListener("click", () => {
+      cart.clear();
+      updateCartCount();
+      renderCart();
+    });
+
+    function productImageForCart(p){
+      if(p.slider) return HOODIE_SLIDES[0]; // first hoodie slide for cart preview
+      return p.img;
+    }
+
+    function renderCart(){
+      cartItemsEl.innerHTML = "";
+      if(cart.size === 0){
+        cartItemsEl.innerHTML = `<p class="cartEmpty">Your cart is empty. Add items from Shop.</p>`;
+        cartTotalEl.textContent = moneyBDT(0);
+        return;
       }
-      lines.push("");
-      lines.push(`Total: ${moneyBDT(total)}`);
-      lines.push("");
-      lines.push("Please confirm size, color, delivery & payment. Thanks!");
-      return lines.join("\n");
+
+      let total = 0;
+
+      for(const [sku, qty] of cart.entries()){
+        const p = products.find(x => x.sku === sku);
+        if(!p) continue;
+
+        total += p.price * qty;
+
+        const item = document.createElement("div");
+        item.className = "cartItem";
+        item.innerHTML = `
+          <div class="cartItemImg">
+            <img src="${productImageForCart(p)}" alt="${p.name}"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300?text=No+Image';">
+          </div>
+          <div>
+            <div class="cartItemTop">
+              <div>
+                <p class="cartItemName">${p.name}</p>
+                <p class="cartItemSku">${p.sku}</p>
+              </div>
+              <div class="cartItemPrice">${moneyBDT(p.price)}</div>
+            </div>
+
+            <div class="qtyRow">
+              <div class="qtyControls">
+                <button class="qbtn" type="button" data-action="minus" data-sku="${p.sku}">-</button>
+                <div class="qnum">${qty}</div>
+                <button class="qbtn" type="button" data-action="plus" data-sku="${p.sku}">+</button>
+              </div>
+              <button class="removeBtn" type="button" data-action="remove" data-sku="${p.sku}">Remove</button>
+            </div>
+          </div>
+        `;
+
+        item.addEventListener("click", (e) => {
+          const btn = e.target.closest("button");
+          if(!btn) return;
+          const action = btn.getAttribute("data-action");
+          const sku2 = btn.getAttribute("data-sku");
+          if(!action || !sku2) return;
+
+          const current = cart.get(sku2) || 0;
+
+          if(action === "plus"){
+            cart.set(sku2, current + 1);
+          } else if(action === "minus"){
+            const next = current - 1;
+            if(next <= 0) cart.delete(sku2);
+            else cart.set(sku2, next);
+          } else if(action === "remove"){
+            cart.delete(sku2);
+          }
+
+          updateCartCount();
+          renderCart();
+        });
+
+        cartItemsEl.appendChild(item);
+      }
+
+      cartTotalEl.textContent = moneyBDT(total);
+    }
+
+    // ===== WhatsApp Order =====
+    function buildOrderMessage(){
+      if(cart.size === 0) return "Hello! I want to place an order from RedBull Clothing.";
+
+      let lines = [];
+      let total = 0;
+
+      for(const [sku, qty] of cart.entries()){
+        const p = products.find(x => x.sku === sku);
+        if(!p) continue;
+        total += p.price * qty;
+        lines.push(`• ${p.name} (${p.sku}) x ${qty} = ${moneyBDT(p.price * qty)}`);
+      }
+
+      return `Hello! I want to place an order from RedBull Clothing:\n\n${lines.join("\n")}\n\nTotal: ${moneyBDT(total)}\n\nPlease confirm size, color, delivery & payment. Thanks!`;
     }
 
     function openWhatsApp(){
-      const text = encodeURIComponent(buildOrderMessage());
-      const url = `https://wa.me/88${WHATSAPP_NUMBER}?text=${text}`;
+      const msg = encodeURIComponent(buildOrderMessage());
+      const url = WHATSAPP_NUMBER.includes("X")
+        ? `https://wa.me/?text=${msg}`
+        : `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
       window.open(url, "_blank");
     }
 
-    document.getElementById("orderHeroBtn").addEventListener("click", openWhatsApp);
-    document.getElementById("orderTopBtn").addEventListener("click", openWhatsApp);
-    document.getElementById("orderContactBtn").addEventListener("click", openWhatsApp);
-    document.getElementById("waFloatBtn").addEventListener("click", openWhatsApp);
+    document.getElementById("checkoutBtn").addEventListener("click", openWhatsApp);
+    document.getElementById("orderWhatsAppBtn").addEventListener("click", openWhatsApp);
 
-    document.getElementById("viewCartBtn").addEventListener("click", () => {
-      alert(buildOrderMessage());
-    });
-
-    render();
+    // Init
+    renderProducts();
+    updateCartCount();
+    renderCart();
   </script>
 
 </body>
