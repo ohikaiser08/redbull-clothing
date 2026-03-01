@@ -2,698 +2,670 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>RedBull Clothing</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel: rgba(255,255,255,.06);
-      --text:#e9eef7;
-      --muted: rgba(233,238,247,.72);
-      --line: rgba(255,255,255,.10);
-      --red:#ff3b3f;
-      --red2:#d41414;
-      --cream:#fff6ea;
-      --shadow: 0 26px 90px rgba(0,0,0,.45);
-      --radius: 26px;
+      --bg:#0b0d10;
+      --card:#0f1217;
+      --muted:#a6adbb;
+      --text:#eef2f7;
+      --soft:#141a22;
+      --border:rgba(255,255,255,.08);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --red:#ff2d2d;
+      --red2:#c90c0c;
+      --green:#16a34a;
+      --radius:18px;
+      --radius2:26px;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(255,45,45,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
       overflow-x:hidden;
     }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    button{font-family:inherit}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 18px}
 
-    /* ===== Header ===== */
+    /* Header */
     .topbar{
-      position:sticky; top:0; z-index:1000;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,0,0,.25);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(15,18,23,.92), rgba(15,18,23,.70));
+      border-bottom:1px solid var(--border);
     }
-    .navwrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
+    .header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:220px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
     }
-    .brand .logo{
-      width:44px; height:44px;
-      border-radius:12px;
-      overflow:hidden;
-      border:2px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      flex:0 0 auto;
+    .brand img{
+      width:46px;height:46px;border-radius:12px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 10px 25px rgba(0,0,0,.35);
+      background:#fff;
     }
-    .brand .txt{line-height:1.05}
-    .brand .txt strong{display:block; font-size:16px; letter-spacing:.2px}
-    .brand .txt span{display:block; font-size:12px; color: var(--muted); margin-top:2px}
-
+    .brand .t1{font-weight:800; letter-spacing:.2px; line-height:1.05}
+    .brand .t2{font-size:12px;color:var(--muted);margin-top:2px}
     nav{
-      display:flex; gap:18px; align-items:center; justify-content:center; flex:1;
+      display:flex; gap:18px; align-items:center;
     }
     nav a{
-      font-weight:800; font-size:14px;
-      color: rgba(255,255,255,.9);
-      opacity:.92;
-      padding:10px 10px;
+      font-weight:600;
+      padding:10px 12px;
       border-radius:12px;
-      transition:.2s ease;
+      color:#dbe2ee;
+      opacity:.92;
     }
-    nav a:hover{background: rgba(255,255,255,.08); opacity:1}
-
-    .navRight{
-      display:flex; align-items:center; gap:10px;
-      min-width:220px; justify-content:flex-end;
+    nav a:hover{background:rgba(255,255,255,.06);opacity:1}
+    .actions{
+      display:flex; gap:10px; align-items:center;
+      min-width: 220px;
+      justify-content:flex-end;
     }
     .pill{
-      border:none; cursor:pointer;
-      border-radius:999px;
-      padding:10px 14px;
-      font-weight:900;
-      font-size:13px;
-      background: rgba(255,255,255,.10);
-      color:#fff;
-      transition:.2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      white-space:nowrap;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:#e8eef9;
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
       user-select:none;
     }
-    .pill:hover{transform:translateY(-1px)}
+    .pill:hover{transform:translateY(-1px);background:rgba(255,255,255,.06)}
     .pill.red{
-      background: linear-gradient(135deg,var(--red2),var(--red));
-      box-shadow: 0 12px 35px rgba(255,59,63,.25);
+      background: linear-gradient(135deg, rgba(255,45,45,.95), rgba(201,12,12,.95));
+      border-color: rgba(255,45,45,.45);
     }
-    .countBadge{
-      min-width:22px; height:22px; padding:0 7px;
-      border-radius:999px;
-      background: rgba(255,255,255,.18);
-      display:inline-flex; align-items:center; justify-content:center;
-      font-size:12px; font-weight:900;
+    .pill.red:hover{filter:saturate(1.1)}
+    .badge{
+      font-size:12px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.12);
+      padding:4px 8px;border-radius:999px;
+      min-width: 28px;
+      text-align:center;
     }
 
-    /* ===== Hero ===== */
+    /* Hero */
     .hero{
       position:relative;
-      min-height: 86vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 90px 18px 70px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-
-      background-image:
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
-        url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80');
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
+      min-height: 76vh;
+      display:flex; align-items:center;
+      border-bottom:1px solid var(--border);
+      overflow:hidden;
     }
-    .heroInner{
-      max-width: 1050px;
-      width:100%;
-      text-align:center;
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
+        url("https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(900px 500px at 50% 30%, rgba(255,45,45,.22), transparent 65%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      padding:74px 0 70px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:26px;
+      align-items:center;
     }
     .hero h1{
       margin:0;
-      font-size: clamp(34px, 5vw, 64px);
-      letter-spacing:.2px;
-      font-weight:900;
+      font-size: clamp(32px, 5vw, 60px);
       line-height:1.05;
+      letter-spacing:-.8px;
     }
-    .hero h1 span{color: var(--red)}
+    .hero h1 span{color:var(--red)}
     .hero p{
-      margin:16px auto 22px;
-      max-width: 760px;
-      color: rgba(255,255,255,.86);
-      font-size: 15px;
-      line-height:1.7;
+      margin:16px 0 0;
+      color:rgba(238,242,247,.86);
+      font-size: clamp(14px, 1.8vw, 17px);
+      max-width: 620px;
     }
-    .heroBtns{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:10px;
+    .cta{
+      margin-top:22px;
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
     }
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:13px 18px;
+      font-weight:800;
+      cursor:pointer;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      color:#f2f6ff;
+      transition: transform .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.09)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(255,45,45,.96), rgba(201,12,12,.96));
+      border-color: rgba(255,45,45,.45);
+    }
+    .btn.primary:hover{filter:saturate(1.06)}
+    .hero-card{
+      background: linear-gradient(180deg, rgba(15,18,23,.75), rgba(15,18,23,.45));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .hero-card .row{
+      display:flex; gap:12px; align-items:center;
+    }
+    .kpi{
+      flex:1;
+      padding:12px 12px;
+      border-radius:16px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .kpi .n{font-weight:900;font-size:18px}
+    .kpi .l{font-size:12px;color:var(--muted);margin-top:2px}
 
-    /* ===== Sections ===== */
-    .section{
-      padding: 70px 18px;
-      background: var(--cream);
-      color:#111;
+    /* Sections */
+    section{padding:56px 0}
+    .sec-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom:22px;
     }
-    .section.dark{
-      background: #070a0e;
-      color: var(--text);
-    }
-    .container{max-width:1200px; margin:0 auto}
-    .secHead{text-align:center; margin-bottom:24px}
-    .secHead h2{
+    .sec-head h2{
       margin:0;
-      font-size: clamp(26px, 3vw, 40px);
-      font-weight:900;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing:-.4px;
     }
-    .secHead p{
-      margin:10px 0 0;
-      color: rgba(17,17,17,.70);
-      font-weight:600;
+    .sec-head p{
+      margin:0;
+      color:var(--muted);
+      max-width: 520px;
+      font-size: 14px;
     }
-    .dark .secHead p{color: rgba(233,238,247,.70)}
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap:22px;
-      margin-top:26px;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
     }
-
     .card{
-      background: rgba(255,255,255,.95);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
       border-radius: 22px;
       overflow:hidden;
-      box-shadow: 0 20px 55px rgba(0,0,0,.12);
-      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
       position:relative;
-      transition:.2s ease;
     }
-    .card:hover{transform:translateY(-2px)}
-    .dark .card{
+    .card .img{
+      height: 210px;
       background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .card img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
     }
     .tag{
-      position:absolute; top:14px; left:14px;
-      background: rgba(0,0,0,.65);
-      color:#fff;
+      position:absolute;
+      top:14px; left:14px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.14);
       padding:8px 12px;
       border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      z-index:2;
+      font-weight:700;
+      font-size:13px;
+      backdrop-filter: blur(10px);
     }
-    .thumb{height: 230px; background: rgba(0,0,0,.08); overflow:hidden}
-    .thumb img{width:100%; height:100%; object-fit:cover}
-    .cardBody{
-      padding:18px 18px 16px;
-      display:flex; flex-direction:column; gap:8px;
+    .card .body{
+      padding:16px 16px 14px;
     }
-    .title{margin:0; font-size:18px; font-weight:900}
-    .meta{
-      margin:0; font-size:13px;
-      color: rgba(17,17,17,.65);
-      display:flex; gap:10px; flex-wrap:wrap;
-      font-weight:600;
+    .title{font-weight:900; font-size:18px; margin:0}
+    .meta{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .bar{
+      margin-top:14px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .dark .meta{color: rgba(233,238,247,.70)}
-    .row{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; margin-top:6px;
-    }
-    .price{font-weight:900; color: var(--red2); font-size:18px}
-    .addBtn{
-      border:none; cursor:pointer;
-      background: rgba(0,0,0,.92);
-      color:#fff; font-weight:900;
-      border-radius: 16px;
-      padding:12px 16px;
-      transition:.2s ease;
-    }
-    .addBtn:hover{transform:translateY(-1px)}
-    .dark .addBtn{background: rgba(255,255,255,.10)}
-
-    /* ===== Hoodie Premium Section ===== */
-    .hoodieSection{
-      padding: 72px 18px;
-      background: #070a0e;
-      color: var(--text);
-      border-top:1px solid rgba(255,255,255,.08);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .hoodieWrap{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:22px;
-      align-items:stretch;
-    }
-
-    .hoodieSlider{
-      position:relative;
-      border-radius: var(--radius);
-      overflow:hidden;
-      min-height: 440px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      user-select:none;
-      touch-action: pan-y;
-    }
-    .hoodieSlider::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.18) 45%, rgba(0,0,0,.65));
-      pointer-events:none;
-      z-index:2;
-    }
-
-    .hoodieTrack{
-      position:absolute; inset:0;
-      z-index:1;
-    }
-    .hoodieTrack img{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      opacity:0;
-      transition: opacity .35s ease;
-    }
-    .hoodieTrack img.active{opacity:1}
-
-    .hsArrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:3;
-      width:44px; height:44px;
-      border:none; cursor:pointer;
-      border-radius:16px;
-      background: rgba(0,0,0,.45);
-      color:#fff;
-      font-weight:900;
-      font-size:22px;
-    }
-    .hsArrow:hover{background: rgba(0,0,0,.70)}
-    .hsArrow.left{left:14px}
-    .hsArrow.right{right:14px}
-
-    .hsDots{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:14px;
-      z-index:3;
-      display:flex;
-      gap:7px;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(8px);
-    }
-    .hsDot{
-      width:9px; height:9px;
-      border-radius:999px;
-      background: rgba(255,255,255,.35);
-      cursor:pointer;
-    }
-    .hsDot.active{background: rgba(255,255,255,.95)}
-
-    /* Thumbnails strip */
-    .hsThumbs{
-      position:absolute;
-      left:14px; right:14px;
-      bottom:56px;
-      z-index:3;
-      display:flex;
-      gap:10px;
-      overflow:auto;
-      padding:8px 6px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .hsThumbs::-webkit-scrollbar{height:8px}
-    .hsThumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:999px}
-    .hsThumb{
-      width:86px; height:56px;
-      border-radius:14px;
-      overflow:hidden;
-      border:2px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      flex:0 0 auto;
-      scroll-snap-align:start;
-      opacity:.9;
-      transition:.18s ease;
-    }
-    .hsThumb.active{
-      border-color: rgba(255,59,63,.75);
-      box-shadow: 0 10px 26px rgba(255,59,63,.18);
-      opacity:1;
-      transform:translateY(-1px);
-    }
-    .hsThumb img{width:100%; height:100%; object-fit:cover}
-
-    .hoodieInfo{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .hoodieInfo .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:999px;
-      padding:10px 12px;
-      font-weight:900;
-      width:max-content;
-    }
-    .hoodieInfo h3{
-      margin:8px 0 0;
-      font-size: clamp(22px, 2.4vw, 34px);
-      font-weight:900;
-      line-height:1.12;
-    }
-    .hoodieInfo p{
-      margin:0;
-      color: rgba(233,238,247,.75);
-      line-height:1.7;
-      font-weight:600;
-    }
-    .hoodiePrice{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-top:8px;
-    }
-    .hoodiePrice .p{
-      font-size:26px;
+    .price{
       font-weight:900;
       color: var(--red);
+      font-size: 18px;
     }
-    .hoodieActions{
+    .add{
+      border:none;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+      border-radius: 14px;
+      padding:10px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .add:hover{transform:translateY(-1px); background: rgba(255,255,255,.10)}
+    .add.primary{
+      background: rgba(255,45,45,.92);
+      border-color: rgba(255,45,45,.45);
+    }
+
+    /* Hoodie Carousel */
+    .hoodie-strip{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
+      gap:16px;
+      overflow:auto;
+      padding: 4px 2px 10px;
+      scroll-snap-type:x mandatory;
     }
-    .hoodieActions .pill{flex:1}
-    .hoodieActions .pill.red{flex:1.2}
-
-    /* ===== Footer ===== */
-    .footer{
-      padding:22px 18px;
-      text-align:center;
-      color: rgba(233,238,247,.60);
-      border-top:1px solid rgba(255,255,255,.08);
-      background:#070a0e;
+    .hoodie-strip::-webkit-scrollbar{height:10px}
+    .hoodie-strip::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:999px}
+    .hoodie-strip::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:999px}
+    .hoodie-card{
+      min-width: 290px;
+      scroll-snap-align:start;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:8px;
     }
 
-    /* ===== Cart Drawer (with +/-) ===== */
-    .cartDrawerOverlay{
+    /* Contact */
+    .contact{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-top:1px solid var(--border);
+    }
+    .contact .box{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 26px;
+      padding:22px;
+      background: rgba(15,18,23,.55);
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:center;
+    }
+    .contact h3{margin:0;font-size:22px}
+    .contact p{margin:8px 0 0;color:var(--muted);font-size:14px}
+    .contact .btns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+
+    /* Cart Drawer */
+    .overlay{
       position:fixed; inset:0;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(8px);
-      z-index:2000;
+      background: rgba(0,0,0,.55);
+      z-index:80;
       display:none;
     }
-    .cartDrawer{
+    .drawer{
       position:fixed;
-      top:0; right:0;
-      height:100vh;
+      top:0; right:-420px;
       width:min(420px, 92vw);
-      background:#0b0f14;
-      color:#fff;
-      z-index:2100;
-      transform:translateX(110%);
-      transition:.25s ease;
-      box-shadow: -20px 0 60px rgba(0,0,0,.35);
+      height:100%;
+      background: linear-gradient(180deg, rgba(12,14,18,.98), rgba(12,14,18,.95));
+      border-left:1px solid rgba(255,255,255,.10);
+      box-shadow: -30px 0 80px rgba(0,0,0,.55);
+      z-index:90;
+      transition:right .22s ease;
       display:flex;
       flex-direction:column;
     }
-    body.cartOpen .cartDrawerOverlay{display:block;}
-    body.cartOpen .cartDrawer{transform:translateX(0);}
-
-    .cartHead{
-      padding:16px 16px 12px;
+    .drawer.open{right:0}
+    .overlay.show{display:block}
+    .drawer-h{
+      padding:18px 16px;
       border-bottom:1px solid rgba(255,255,255,.10);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
     }
-    .cartHead h3{margin:0; font-size:18px}
-    .cartClose{
-      border:none; background:rgba(255,255,255,.10);
-      color:#fff; padding:10px 12px;
-      border-radius:12px; cursor:pointer; font-weight:900;
-    }
-    .cartBody{padding:14px 16px; overflow:auto; flex:1}
-    .cartEmpty{margin:0; opacity:.8; line-height:1.7}
-
-    .cartItem{
-      display:grid;
-      grid-template-columns: 64px 1fr;
-      gap:12px;
-      padding:12px 0;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .cartItemImg{
-      width:64px; height:64px;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(255,255,255,.08);
-    }
-    .cartItemImg img{width:100%; height:100%; object-fit:cover;}
-    .cartItemTop{display:flex; justify-content:space-between; gap:10px}
-    .cartItemName{font-weight:900; font-size:14px; margin:0}
-    .cartItemSku{font-size:12px; opacity:.75; margin:3px 0 0}
-    .cartItemPrice{font-weight:900; color:var(--red); font-size:14px; white-space:nowrap}
-
-    .qtyRow{
-      margin-top:10px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .qtyControls{display:flex; align-items:center; gap:8px}
-    .qbtn{
-      width:34px; height:34px;
-      border:none; border-radius:12px;
-      background:rgba(255,255,255,.10);
-      color:#fff; font-weight:900;
-      cursor:pointer;
-    }
-    .qnum{min-width:32px; text-align:center; font-weight:900}
-    .removeBtn{
+    .drawer-h h3{margin:0;font-size:18px}
+    .close{
       border:none;
-      background:rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
       color:#fff;
-      padding:8px 10px;
-      border-radius:12px;
+      border-radius: 14px;
+      padding:10px 14px;
+      font-weight:900;
       cursor:pointer;
+    }
+    .items{
+      padding:14px 14px 0;
+      overflow:auto;
+      flex:1;
+    }
+    .line{
+      display:grid;
+      grid-template-columns: 56px 1fr auto;
+      gap:12px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      margin-bottom:12px;
+      align-items:center;
+    }
+    .thumb{
+      width:56px;height:56px;border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:#fff;
+    }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .li-title{font-weight:900;margin:0;font-size:14px}
+    .li-sku{margin:3px 0 0;color:var(--muted);font-size:12px}
+    .qty{
+      margin-top:10px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .qbtn{
+      width:34px;height:34px;border-radius:12px;
+      border:none; cursor:pointer;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
       font-weight:900;
     }
-
-    .cartFoot{
-      padding:14px 16px 16px;
+    .qnum{min-width:18px;text-align:center;font-weight:900}
+    .right{
+      text-align:right;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+    }
+    .li-price{font-weight:900;color:var(--red)}
+    .rm{
+      border:none;
+      cursor:pointer;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      border-radius: 12px;
+      padding:8px 10px;
+      font-weight:900;
+      font-size:12px;
+    }
+    .drawer-f{
+      padding:14px;
       border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(10,12,16,.65);
     }
-    .totalRow{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:12px; font-weight:900; margin-bottom:12px;
+    .tot{
+      display:flex; align-items:center; justify-content:space-between;
+      font-weight:900;
+      margin-bottom:12px;
     }
-    .cartActions{display:flex; gap:10px; flex-wrap:wrap}
-    .cartActions .pill{flex:1}
+    .tot span:last-child{color:var(--red); font-size:18px}
+    .fbtns{display:flex;gap:10px}
+    .fbtns .btn{flex:1}
 
-    /* Mobile */
+    /* Responsive */
     @media (max-width: 980px){
-      nav{display:none}
-      .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
+      .hero-inner{grid-template-columns:1fr; padding:58px 0 60px}
+      .actions{min-width:auto}
       .brand{min-width:auto}
-      .navRight{min-width:auto}
-      .hoodieWrap{grid-template-columns: 1fr;}
-      .hoodieSlider{min-height: 380px;}
-    }
-    @media (max-width: 560px){
-      .grid{grid-template-columns: 1fr;}
-      .thumb{height: 210px;}
-      .hero{min-height:80vh}
-      .hoodieSlider{min-height: 330px;}
-      .hsThumb{width:78px; height:52px}
+      nav{display:none}
+      .grid{grid-template-columns:1fr}
+      .contact .box{grid-template-columns:1fr}
+      .contact .btns{justify-content:flex-start}
     }
   </style>
 </head>
 
 <body>
 
-  <header class="topbar">
-    <div class="navwrap">
-      <a class="brand" href="#home">
-        <div class="logo">
-          <img src="logo.png" alt="RedBull Clothing Logo" onerror="this.style.display='none'">
+  <!-- Header -->
+  <div class="topbar">
+    <div class="wrap header">
+      <div class="brand">
+        <img src="logo.png" alt="RedBull Clothing Logo">
+        <div>
+          <div class="t1">RedBull Clothing</div>
+          <div class="t2">Bangladesh</div>
         </div>
-        <div class="txt">
-          <strong>RedBull Clothing</strong>
-          <span>Bangladesh</span>
-        </div>
-      </a>
+      </div>
 
       <nav>
         <a href="#home">Home</a>
-        <a href="#hoodie">Hoodies</a>
-        <a href="#shop">Street</a>
+        <a href="#street">Street</a>
+        <a href="#hoodies">Hoodies</a>
         <a href="#punjabi">Punjabi</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="navRight">
-        <button class="pill" id="viewCartBtn" type="button">
-          Cart <span class="countBadge" id="cartCount">0</span>
+      <div class="actions">
+        <button class="pill" id="cartBtn" type="button">
+          Cart <span class="badge" id="cartCount">0</span>
         </button>
         <button class="pill red" id="orderBtn" type="button">Order</button>
       </div>
     </div>
-  </header>
+  </div>
 
-  <section id="home" class="hero">
-    <div class="heroInner">
-      <h1>Power in Every <span>Thread</span></h1>
-      <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="wrap hero-inner">
+      <div>
+        <h1>Power in Every <span>Thread</span></h1>
+        <p>Premium Streetwear & Elegant Punjabi Collection — crafted for confidence and everyday style.</p>
 
-      <div class="heroBtns">
-        <a class="pill red" href="#shop">Shop Now</a>
-        <button class="pill" id="orderWhatsAppBtn" type="button">Order on WhatsApp</button>
+        <div class="cta">
+          <button class="btn primary" type="button" onclick="document.querySelector('#street').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+          <button class="btn" type="button" onclick="openCart()">Open Cart</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="row">
+          <div class="kpi">
+            <div class="n">8+</div>
+            <div class="l">Hoodies (Slides)</div>
+          </div>
+          <div class="kpi">
+            <div class="n">Fast</div>
+            <div class="l">WhatsApp Order</div>
+          </div>
+          <div class="kpi">
+            <div class="n">BD</div>
+            <div class="l">Local Delivery</div>
+          </div>
+        </div>
+        <div class="hint">Tip: Hoodies section এ scroll করে আলাদা আলাদা hoodie add করতে পারবে ✅</div>
       </div>
     </div>
   </section>
 
-  <!-- ✅ Hoodie separate PREMIUM section -->
-  <section id="hoodie" class="hoodieSection">
-    <div class="container">
-      <div class="secHead">
-        <h2>Urban Hoodie</h2>
-        <p>Swipe / click thumbnails — premium comfort, street-ready vibe.</p>
-      </div>
-
-      <div class="hoodieWrap">
-        <div class="hoodieSlider" id="hoodieSlider">
-          <button class="hsArrow left" type="button" id="hsPrev" aria-label="Previous">‹</button>
-          <button class="hsArrow right" type="button" id="hsNext" aria-label="Next">›</button>
-
-          <div class="hoodieTrack" id="hoodieTrack"></div>
-
-          <div class="hsThumbs" id="hsThumbs"></div>
-          <div class="hsDots" id="hsDots"></div>
-        </div>
-
-        <div class="hoodieInfo">
-          <div>
-            <div class="badge">🔥 Best Seller • Street</div>
-            <h3>Urban Hoodie — Limited Stock</h3>
-            <p>
-              Soft inside, clean outside. Perfect for daily wear, winter layer, and street style.
-              Add to cart and order anytime.
-            </p>
-          </div>
-
-          <div>
-            <div class="hoodiePrice">
-              <div class="p" id="hoodiePrice">৳ 1,990</div>
-              <button class="addBtn" id="hoodieAddBtn" type="button">Add to Cart</button>
-            </div>
-            <div class="hoodieActions">
-              <a class="pill" href="#shop">View Street Items</a>
-              <button class="pill red" id="hoodieOrderBtn" type="button">Order on WhatsApp</button>
-            </div>
-          </div>
+  <!-- Street Collection -->
+  <section id="street">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Street Collection</h2>
+          <p>T-Shirts, Pants & more — clean fits, premium feel.</p>
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <section id="shop" class="section">
-    <div class="container">
-      <div class="secHead">
-        <h2>Street Collection</h2>
-        <p>T-Shirts, Pants — clean fits, premium feel.</p>
-      </div>
       <div class="grid" id="streetGrid"></div>
     </div>
   </section>
 
-  <section id="punjabi" class="section dark">
-    <div class="container">
-      <div class="secHead">
-        <h2>Punjabi Collection</h2>
-        <p>Traditional elegance with modern finishing.</p>
+  <!-- Hoodies (Separate) -->
+  <section id="hoodies">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Hoodie Collection</h2>
+          <p>Every slide is a different hoodie product — HOODIE-001 to HOODIE-008.</p>
+        </div>
       </div>
+
+      <div class="hoodie-strip" id="hoodieStrip"></div>
+      <div class="hint">Scroll → hoodie cards, then “Add” চাপো। (প্রতি image আলাদা product) ✅</div>
+    </div>
+  </section>
+
+  <!-- Punjabi Collection -->
+  <section id="punjabi">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Punjabi Collection</h2>
+          <p>Traditional elegance with modern finishing.</p>
+        </div>
+      </div>
+
       <div class="grid" id="punjabiGrid"></div>
     </div>
   </section>
 
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="secHead">
-        <h2>Contact</h2>
-        <p>Message us for sizing, color, delivery & payment.</p>
-      </div>
-
-      <div style="max-width:900px;margin:0 auto;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.10);">
-        <h3 style="margin:0 0 8px;font-weight:900;">Order Support</h3>
-        <p style="margin:0;color:rgba(17,17,17,.70);line-height:1.7;font-weight:600;">
-          Fastest way: open <b>Cart</b> → click <b>Order on WhatsApp</b>. We'll confirm size, color, delivery address and payment.
-        </p>
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <h3>Let’s take your order</h3>
+          <p>Add products to cart → open cart → click WhatsApp order. We’ll confirm size, color, delivery & payment.</p>
+        </div>
+        <div class="btns">
+          <button class="btn" type="button" onclick="openCart()">Open Cart</button>
+          <button class="btn primary" type="button" onclick="orderWhatsApp()">Order on WhatsApp</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    © <span id="year"></span> RedBull Clothing — All rights reserved.
-  </footer>
+  <!-- Cart Overlay + Drawer -->
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
 
-  <!-- Cart Drawer -->
-  <div class="cartDrawerOverlay" id="cartOverlay"></div>
-  <aside class="cartDrawer" id="cartDrawer" aria-label="Cart">
-    <div class="cartHead">
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-h">
       <h3>Your Cart</h3>
-      <button class="cartClose" id="cartCloseBtn" type="button">Close</button>
+      <button class="close" type="button" onclick="closeCart()">Close</button>
     </div>
-    <div class="cartBody" id="cartItems"></div>
-    <div class="cartFoot">
-      <div class="totalRow">
-        <div>Total</div>
-        <div id="cartTotal">৳ 0</div>
+
+    <div class="items" id="cartItems"></div>
+
+    <div class="drawer-f">
+      <div class="tot">
+        <span>Total</span>
+        <span id="cartTotal">৳ 0</span>
       </div>
-      <div class="cartActions">
-        <button class="pill" id="clearCartBtn" type="button">Clear</button>
-        <button class="pill red" id="checkoutBtn" type="button">Order on WhatsApp</button>
+      <div class="fbtns">
+        <button class="btn" type="button" onclick="clearCart()">Clear</button>
+        <button class="btn primary" type="button" onclick="orderWhatsApp()">WhatsApp</button>
       </div>
     </div>
   </aside>
 
   <script>
-    // ✅ WhatsApp number with country code (no +). Example: 8801XXXXXXXXX
-    const WHATSAPP_NUMBER = "8801XXXXXXXXX";
+    // =========================
+    // Helpers
+    // =========================
+    const $ = (id)=>document.getElementById(id);
 
-    // ✅ Hoodie file names (spaces সহ as-is). Code will encode them.
-    const HOODIE_SLIDES = [
+    function safeSrc(path){
+      // Handles spaces + parentheses: encodeURI keeps "/" but encodes spaces etc.
+      return encodeURI(path);
+    }
+
+    function moneyBDT(n){
+      // simple format
+      return "৳ " + Number(n).toLocaleString("en-US");
+    }
+
+    // =========================
+    // Products (Street + Punjabi)
+    // =========================
+    const STREET_PRODUCTS = [
+      {
+        sku:"TSHIRT-001",
+        name:"Premium T-Shirt",
+        cat:"street",
+        tag:"Street • Best Seller",
+        price: 890,
+        img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80"
+      },
+      {
+        sku:"PANTS-001",
+        name:"Street Pants",
+        cat:"street",
+        tag:"Street • New Drop",
+        price: 1590,
+        img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1400&q=80"
+      },
+      {
+        sku:"CAP-001",
+        name:"Minimal Cap",
+        cat:"street",
+        tag:"Street • Limited",
+        price: 490,
+        img:"https://images.unsplash.com/photo-1520975867597-0d0db7b6c5c3?auto=format&fit=crop&w=1400&q=80"
+      }
+    ];
+
+    const PUNJABI_PRODUCTS = [
+      {
+        sku:"PUNJABI-001",
+        name:"Classic Punjabi",
+        cat:"punjabi",
+        tag:"Punjabi • Featured",
+        price: 2490,
+        img:"Punjabi.jpeg"
+      },
+      {
+        sku:"PUNJABI-002",
+        name:"Festive Punjabi",
+        cat:"punjabi",
+        tag:"Punjabi • Best Seller",
+        price: 2990,
+        img:"Punjabi.jpeg"
+      },
+      {
+        sku:"PUNJABI-003",
+        name:"Premium Punjabi",
+        cat:"punjabi",
+        tag:"Punjabi • New",
+        price: 2790,
+        img:"Punjabi.jpeg"
+      }
+    ];
+
+    // =========================
+    // Hoodie Products (YOUR UPLOADED FILES)
+    // NOTE: match EXACT filenames from repo
+    // =========================
+    const HOODIE_FILES = [
       "hoodie jpg 01 (1).jpeg",
       "hoodie jpg 02.jpeg",
       "hoodie jpg 03.jpeg",
@@ -701,324 +673,223 @@
       "hoodie jpg 05.jpeg",
       "hoodie jpg 06.jpeg",
       "hoodie jpg 07.jpeg",
-      "hoodie jpg 08.jpeg",
+      "hoodie jpg 08.jpeg"
     ];
 
-    // ✅ Separate hoodie product (not in street cards)
-    const HOODIE_PRODUCT = { sku:"HOODIE-001", name:"Urban Hoodie", cat:"street", tag:"Street • Best Seller", price:1990 };
+    const HOODIE_PRODUCTS = HOODIE_FILES.map((file, i) => ({
+      sku: `HOODIE-${String(i+1).padStart(3,"0")}`,
+      name: `Urban Hoodie ${i+1}`,
+      cat: "hoodie",
+      tag: "Hoodie • Limited",
+      price: 1990,
+      img: file
+    }));
 
-    // ✅ Street + Punjabi products
-    const products = [
-      { sku:"TSHIRT-001", name:"Premium T-Shirt", cat:"street", tag:"Street • Best Seller", price:890,
-        img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80"
-      },
-      { sku:"PANTS-001", name:"Street Pants", cat:"street", tag:"Street • Clean Fit", price:1590,
-        img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1400&q=80"
-      },
+    const ALL_PRODUCTS = [...STREET_PRODUCTS, ...HOODIE_PRODUCTS, ...PUNJABI_PRODUCTS];
 
-      // Punjabi.jpeg must exist in repo root
-      { sku:"PUNJABI-001", name:"Classic Punjabi", cat:"punjabi", tag:"Punjabi • Featured", price:2490, img:"Punjabi.jpeg" },
-      { sku:"PUNJABI-002", name:"Festive Punjabi", cat:"punjabi", tag:"Punjabi • Best Seller", price:2990, img:"Punjabi.jpeg" },
-      { sku:"PUNJABI-003", name:"Premium Punjabi", cat:"punjabi", tag:"Punjabi • Premium", price:3490, img:"Punjabi.jpeg" },
-    ];
+    function productBySku(sku){
+      return ALL_PRODUCTS.find(p => p.sku === sku);
+    }
 
-    // Helpers
-    const $ = (id) => document.getElementById(id);
-    const streetGrid = $("streetGrid");
-    const punjabiGrid = $("punjabiGrid");
-    const cartCountEl = $("cartCount");
-    const cartItemsEl = $("cartItems");
-    const cartTotalEl = $("cartTotal");
+    // =========================
+    // Render Cards
+    // =========================
+    function cardHTML(p){
+      return `
+        <article class="card">
+          <div class="tag">${p.tag}</div>
+          <div class="img">
+            <img src="${safeSrc(p.img)}" alt="${p.name}">
+          </div>
+          <div class="body">
+            <p class="title">${p.name}</p>
+            <p class="meta">${p.cat.toUpperCase()} • ${p.sku}</p>
+            <div class="bar">
+              <div class="price">${moneyBDT(p.price)}</div>
+              <button class="add ${p.cat==='hoodie' ? 'primary':''}" type="button" onclick="addToCart('${p.sku}')">Add</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    function render(){
+      // Street
+      $("streetGrid").innerHTML = STREET_PRODUCTS.map(cardHTML).join("");
 
-    const cart = new Map(); // sku -> qty
+      // Hoodies strip (separate)
+      $("hoodieStrip").innerHTML = HOODIE_PRODUCTS.map(p => `
+        <div class="hoodie-card">
+          ${cardHTML(p)}
+        </div>
+      `).join("");
 
-    function moneyBDT(n){ return "৳ " + Number(n).toLocaleString("en-US"); }
-    function safeSrc(path){ return encodeURI(path); } // spaces / () will work
+      // Punjabi
+      $("punjabiGrid").innerHTML = PUNJABI_PRODUCTS.map(cardHTML).join("");
+    }
 
-    function updateCartCount(){
-      let count = 0;
-      for(const qty of cart.values()) count += qty;
-      cartCountEl.textContent = count;
+    // =========================
+    // Cart Logic (localStorage)
+    // =========================
+    const CART_KEY = "rb_cart_v1";
+    let cart = loadCart();
+
+    function loadCart(){
+      try{
+        const raw = localStorage.getItem(CART_KEY);
+        if(!raw) return {};
+        const obj = JSON.parse(raw);
+        return (obj && typeof obj === "object") ? obj : {};
+      }catch(e){
+        return {};
+      }
+    }
+
+    function saveCart(){
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function cartCount(){
+      return Object.values(cart).reduce((a,b)=>a+b,0);
+    }
+
+    function cartTotal(){
+      let t = 0;
+      for(const [sku, qty] of Object.entries(cart)){
+        const p = productBySku(sku);
+        if(p) t += p.price * qty;
+      }
+      return t;
     }
 
     function addToCart(sku){
-      const current = cart.get(sku) || 0;
-      cart.set(sku, current + 1);
-      updateCartCount();
-      renderCart();
+      if(!productBySku(sku)) return;
+      cart[sku] = (cart[sku] || 0) + 1;
+      saveCart();
       openCart();
     }
 
-    function buildCard(p){
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <div class="tag">${p.tag}</div>
-        <div class="thumb">
-          <img src="${safeSrc(p.img)}" alt="${p.name}"
-               onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Image+Not+Found';">
-        </div>
-        <div class="cardBody">
-          <p class="title">${p.name}</p>
-          <p class="meta">${p.tag}</p>
-          <div class="row">
-            <div class="price">${moneyBDT(p.price)}</div>
-            <button class="addBtn" type="button">Add</button>
-          </div>
-        </div>
-      `;
-      div.querySelector(".addBtn").addEventListener("click", () => addToCart(p.sku));
-      return div;
+    function inc(sku){
+      if(!productBySku(sku)) return;
+      cart[sku] = (cart[sku] || 0) + 1;
+      saveCart();
     }
 
-    function renderProducts(){
-      streetGrid.innerHTML = "";
-      punjabiGrid.innerHTML = "";
-      products.filter(p => p.cat === "street").forEach(p => streetGrid.appendChild(buildCard(p)));
-      products.filter(p => p.cat === "punjabi").forEach(p => punjabiGrid.appendChild(buildCard(p)));
+    function dec(sku){
+      if(!cart[sku]) return;
+      cart[sku] -= 1;
+      if(cart[sku] <= 0) delete cart[sku];
+      saveCart();
     }
 
-    // ===== Hoodie Slider + Thumbs + Swipe =====
-    const hoodieSlider = $("hoodieSlider");
-    const hoodieTrack = $("hoodieTrack");
-    const hsDots = $("hsDots");
-    const hsThumbs = $("hsThumbs");
-    const hsPrev = $("hsPrev");
-    const hsNext = $("hsNext");
-
-    let hsIndex = 0;
-    let hsTimer = null;
-
-    function buildHoodieSlider(){
-      hoodieTrack.innerHTML = "";
-      hsDots.innerHTML = "";
-      hsThumbs.innerHTML = "";
-
-      HOODIE_SLIDES.forEach((rawSrc, i) => {
-        const src = safeSrc(rawSrc);
-
-        // main images
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = "Urban Hoodie " + (i + 1);
-        img.className = i === 0 ? "active" : "";
-        img.onerror = () => { img.src = "https://via.placeholder.com/1600x900?text=Hoodie+Image+Missing"; };
-        hoodieTrack.appendChild(img);
-
-        // dots
-        const dot = document.createElement("span");
-        dot.className = "hsDot" + (i === 0 ? " active" : "");
-        dot.addEventListener("click", () => { showHoodie(i); restartHoodie(); });
-        hsDots.appendChild(dot);
-
-        // thumbs
-        const th = document.createElement("div");
-        th.className = "hsThumb" + (i === 0 ? " active" : "");
-        th.innerHTML = `<img src="${src}" alt="Thumb ${i+1}"
-                          onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=No+Image';">`;
-        th.addEventListener("click", () => { showHoodie(i); restartHoodie(); });
-        hsThumbs.appendChild(th);
-      });
+    function removeItem(sku){
+      delete cart[sku];
+      saveCart();
     }
 
-    function showHoodie(i){
-      const imgs = Array.from(hoodieTrack.querySelectorAll("img"));
-      const dots = Array.from(hsDots.querySelectorAll(".hsDot"));
-      const thumbs = Array.from(hsThumbs.querySelectorAll(".hsThumb"));
-
-      hsIndex = (i + imgs.length) % imgs.length;
-
-      imgs.forEach((im, k) => im.classList.toggle("active", k === hsIndex));
-      dots.forEach((d, k) => d.classList.toggle("active", k === hsIndex));
-      thumbs.forEach((t, k) => t.classList.toggle("active", k === hsIndex));
-
-      // ensure active thumb visible
-      const activeThumb = thumbs[hsIndex];
-      if(activeThumb){
-        activeThumb.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
-      }
+    function clearCart(){
+      cart = {};
+      saveCart();
     }
 
-    function nextHoodie(){ showHoodie(hsIndex + 1); }
-    function prevHoodie(){ showHoodie(hsIndex - 1); }
+    function updateCartUI(){
+      $("cartCount").textContent = cartCount();
 
-    function startHoodie(){ hsTimer = setInterval(nextHoodie, 3000); }
-    function stopHoodie(){ if(hsTimer) clearInterval(hsTimer); hsTimer = null; }
-    function restartHoodie(){ stopHoodie(); startHoodie(); }
-
-    hsNext.addEventListener("click", () => { nextHoodie(); restartHoodie(); });
-    hsPrev.addEventListener("click", () => { prevHoodie(); restartHoodie(); });
-
-    hoodieSlider.addEventListener("mouseenter", stopHoodie);
-    hoodieSlider.addEventListener("mouseleave", startHoodie);
-
-    // Swipe for mobile
-    let touchX = 0, touchY = 0, isSwiping = false;
-    hoodieSlider.addEventListener("touchstart", (e) => {
-      const t = e.touches[0];
-      touchX = t.clientX; touchY = t.clientY;
-      isSwiping = true;
-      stopHoodie();
-    }, {passive:true});
-
-    hoodieSlider.addEventListener("touchmove", (e) => {
-      if(!isSwiping) return;
-      const t = e.touches[0];
-      const dx = t.clientX - touchX;
-      const dy = t.clientY - touchY;
-      // only act if mostly horizontal
-      if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 14){
-        isSwiping = false;
-        if(dx < 0) nextHoodie(); else prevHoodie();
-        restartHoodie();
-      }
-    }, {passive:true});
-
-    hoodieSlider.addEventListener("touchend", () => {
-      isSwiping = false;
-      restartHoodie();
-    }, {passive:true});
-
-    $("hoodieAddBtn").addEventListener("click", () => addToCart(HOODIE_PRODUCT.sku));
-    $("hoodieOrderBtn").addEventListener("click", () => openWhatsApp());
-
-    // ===== Cart Drawer =====
-    const overlay = $("cartOverlay");
-    function openCart(){ document.body.classList.add("cartOpen"); renderCart(); }
-    function closeCart(){ document.body.classList.remove("cartOpen"); }
-
-    $("viewCartBtn").addEventListener("click", openCart);
-    $("orderBtn").addEventListener("click", openCart);
-    $("cartCloseBtn").addEventListener("click", closeCart);
-    overlay.addEventListener("click", closeCart);
-
-    $("clearCartBtn").addEventListener("click", () => {
-      cart.clear();
-      updateCartCount();
-      renderCart();
-    });
-
-    function productBySku(sku){
-      if(sku === HOODIE_PRODUCT.sku) return HOODIE_PRODUCT;
-      return products.find(x => x.sku === sku);
-    }
-
-    function productImageForCart(p){
-      if(p.sku === HOODIE_PRODUCT.sku) return safeSrc(HOODIE_SLIDES[0]);
-      return safeSrc(p.img);
-    }
-
-    function renderCart(){
-      cartItemsEl.innerHTML = "";
-      if(cart.size === 0){
-        cartItemsEl.innerHTML = `<p class="cartEmpty">Your cart is empty. Add items from Shop.</p>`;
-        cartTotalEl.textContent = moneyBDT(0);
+      const entries = Object.entries(cart);
+      if(entries.length === 0){
+        $("cartItems").innerHTML = `<div style="color:var(--muted);padding:18px 6px">Cart is empty. Add products to get started.</div>`;
+        $("cartTotal").textContent = moneyBDT(0);
         return;
       }
 
-      let total = 0;
-
-      for(const [sku, qty] of cart.entries()){
+      $("cartItems").innerHTML = entries.map(([sku, qty])=>{
         const p = productBySku(sku);
-        if(!p) continue;
-
-        total += p.price * qty;
-
-        const item = document.createElement("div");
-        item.className = "cartItem";
-        item.innerHTML = `
-          <div class="cartItemImg">
-            <img src="${productImageForCart(p)}" alt="${p.name}"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300?text=No+Image';">
-          </div>
-          <div>
-            <div class="cartItemTop">
-              <div>
-                <p class="cartItemName">${p.name}</p>
-                <p class="cartItemSku">${p.sku}</p>
-              </div>
-              <div class="cartItemPrice">${moneyBDT(p.price)}</div>
-            </div>
-
-            <div class="qtyRow">
-              <div class="qtyControls">
-                <button class="qbtn" type="button" data-action="minus" data-sku="${p.sku}">-</button>
+        if(!p) return "";
+        return `
+          <div class="line">
+            <div class="thumb"><img src="${safeSrc(p.img)}" alt="${p.name}"></div>
+            <div>
+              <p class="li-title">${p.name}</p>
+              <p class="li-sku">${sku}</p>
+              <div class="qty">
+                <button class="qbtn" type="button" onclick="dec('${sku}')">-</button>
                 <div class="qnum">${qty}</div>
-                <button class="qbtn" type="button" data-action="plus" data-sku="${p.sku}">+</button>
+                <button class="qbtn" type="button" onclick="inc('${sku}')">+</button>
               </div>
-              <button class="removeBtn" type="button" data-action="remove" data-sku="${p.sku}">Remove</button>
+            </div>
+            <div class="right">
+              <div class="li-price">${moneyBDT(p.price)}</div>
+              <button class="rm" type="button" onclick="removeItem('${sku}')">Remove</button>
             </div>
           </div>
         `;
+      }).join("");
 
-        item.addEventListener("click", (e) => {
-          const btn = e.target.closest("button");
-          if(!btn) return;
-          const action = btn.getAttribute("data-action");
-          const sku2 = btn.getAttribute("data-sku");
-          if(!action || !sku2) return;
-
-          const current = cart.get(sku2) || 0;
-
-          if(action === "plus"){
-            cart.set(sku2, current + 1);
-          } else if(action === "minus"){
-            const next = current - 1;
-            if(next <= 0) cart.delete(sku2);
-            else cart.set(sku2, next);
-          } else if(action === "remove"){
-            cart.delete(sku2);
-          }
-
-          updateCartCount();
-          renderCart();
-        });
-
-        cartItemsEl.appendChild(item);
-      }
-
-      cartTotalEl.textContent = moneyBDT(total);
+      $("cartTotal").textContent = moneyBDT(cartTotal());
     }
 
-    // ===== WhatsApp Order (NO ALERT) =====
-    function buildOrderMessage(){
-      if(cart.size === 0) return "Hello! I want to place an order from RedBull Clothing.";
+    // =========================
+    // Drawer open/close
+    // =========================
+    function openCart(){
+      $("overlay").classList.add("show");
+      $("drawer").classList.add("open");
+      $("drawer").setAttribute("aria-hidden","false");
+    }
+
+    function closeCart(){
+      $("overlay").classList.remove("show");
+      $("drawer").classList.remove("open");
+      $("drawer").setAttribute("aria-hidden","true");
+    }
+
+    $("cartBtn").addEventListener("click", openCart);
+    $("orderBtn").addEventListener("click", orderWhatsApp);
+
+    // =========================
+    // WhatsApp Order
+    // =========================
+    function orderWhatsApp(){
+      const entries = Object.entries(cart);
+      if(entries.length === 0){
+        openCart();
+        return;
+      }
 
       let lines = [];
       let total = 0;
 
-      for(const [sku, qty] of cart.entries()){
+      for(const [sku, qty] of entries){
         const p = productBySku(sku);
         if(!p) continue;
-        total += p.price * qty;
-        lines.push(`• ${p.name} (${p.sku}) x ${qty} = ${moneyBDT(p.price * qty)}`);
+        const sub = p.price * qty;
+        total += sub;
+        lines.push(`• ${p.name} (${sku}) x ${qty} = ৳ ${sub.toLocaleString("en-US")}`);
       }
 
-      return `Hello! I want to place an order from RedBull Clothing:\n\n${lines.join("\n")}\n\nTotal: ${moneyBDT(total)}\n\nPlease confirm size, color, delivery & payment. Thanks!`;
-    }
+      const msg =
+`Hello! I want to place an order from RedBull Clothing:
 
-    function openWhatsApp(){
-      const msg = encodeURIComponent(buildOrderMessage());
-      const url = WHATSAPP_NUMBER.includes("X")
-        ? `https://wa.me/?text=${msg}`
-        : `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+${lines.join("\n")}
+
+Total: ৳ ${total.toLocaleString("en-US")}
+
+Please confirm size, color, delivery & payment. Thanks!`;
+
+      // Put your number here (Bangladesh format):
+      // Example: 8801XXXXXXXXX (without +)
+      const phone = ""; // <- চাইলে এখানে নম্বর বসাও, না বসালে শুধু message open হবে
+      const url = phone
+        ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`
+        : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+
       window.open(url, "_blank");
     }
 
-    $("checkoutBtn").addEventListener("click", openWhatsApp);
-    $("orderWhatsAppBtn").addEventListener("click", openWhatsApp);
-
     // Init
-    renderProducts();
-    updateCartCount();
-    renderCart();
-    $("hoodiePrice").textContent = moneyBDT(HOODIE_PRODUCT.price);
-
-    buildHoodieSlider();
-    startHoodie();
+    render();
+    updateCartUI();
   </script>
-
 </body>
 </html>
