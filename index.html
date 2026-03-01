@@ -17,6 +17,8 @@
       --red:#ff3b3f;
       --red2:#d41414;
       --cream:#fff6ea;
+      --shadow: 0 26px 90px rgba(0,0,0,.45);
+      --radius: 26px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -29,12 +31,13 @@
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
+    button{font-family:inherit}
 
     /* ===== Header ===== */
     .topbar{
       position:sticky; top:0; z-index:1000;
       background: rgba(0,0,0,.55);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,0,0,.25);
     }
     .navwrap{
@@ -65,12 +68,12 @@
     .brand .txt span{display:block; font-size:12px; color: var(--muted); margin-top:2px}
 
     nav{
-      display:flex; gap:26px; align-items:center; justify-content:center; flex:1;
+      display:flex; gap:18px; align-items:center; justify-content:center; flex:1;
     }
     nav a{
       font-weight:800; font-size:14px;
       color: rgba(255,255,255,.9);
-      opacity:.9;
+      opacity:.92;
       padding:10px 10px;
       border-radius:12px;
       transition:.2s ease;
@@ -94,6 +97,7 @@
       align-items:center;
       gap:8px;
       white-space:nowrap;
+      user-select:none;
     }
     .pill:hover{transform:translateY(-1px)}
     .pill.red{
@@ -191,7 +195,9 @@
       box-shadow: 0 20px 55px rgba(0,0,0,.12);
       border: 1px solid rgba(0,0,0,.06);
       position:relative;
+      transition:.2s ease;
     }
+    .card:hover{transform:translateY(-2px)}
     .dark .card{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
@@ -207,67 +213,6 @@
       font-weight:900;
       z-index:2;
     }
-
-    /* ===== Hoodie Slider Card ===== */
-    .slider{
-      height: 230px;
-      position:relative;
-      overflow:hidden;
-      background: rgba(0,0,0,.10);
-    }
-    .slideTrack{
-      height:100%;
-      width:100%;
-      position:relative;
-    }
-    .slideTrack img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:0;
-      transition: opacity .35s ease;
-    }
-    .slideTrack img.active{opacity:1}
-    .arrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:38px; height:38px;
-      border:none; cursor:pointer;
-      border-radius:14px;
-      background: rgba(0,0,0,.45);
-      color:#fff;
-      font-weight:900;
-      z-index:5;
-    }
-    .arrow:hover{background: rgba(0,0,0,.62)}
-    .arrow.left{left:10px}
-    .arrow.right{right:10px}
-
-    .dots{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:10px;
-      display:flex;
-      gap:6px;
-      z-index:6;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
-    }
-    .dot{
-      width:8px; height:8px;
-      border-radius:999px;
-      background: rgba(255,255,255,.35);
-      cursor:pointer;
-    }
-    .dot.active{background: rgba(255,255,255,.95)}
-    /* ===== End Slider ===== */
-
     .thumb{height: 230px; background: rgba(0,0,0,.08); overflow:hidden}
     .thumb img{width:100%; height:100%; object-fit:cover}
     .cardBody{
@@ -297,6 +242,183 @@
     }
     .addBtn:hover{transform:translateY(-1px)}
     .dark .addBtn{background: rgba(255,255,255,.10)}
+
+    /* ===== Hoodie Premium Section ===== */
+    .hoodieSection{
+      padding: 72px 18px;
+      background: #070a0e;
+      color: var(--text);
+      border-top:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hoodieWrap{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .hoodieSlider{
+      position:relative;
+      border-radius: var(--radius);
+      overflow:hidden;
+      min-height: 440px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      user-select:none;
+      touch-action: pan-y;
+    }
+    .hoodieSlider::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.18) 45%, rgba(0,0,0,.65));
+      pointer-events:none;
+      z-index:2;
+    }
+
+    .hoodieTrack{
+      position:absolute; inset:0;
+      z-index:1;
+    }
+    .hoodieTrack img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition: opacity .35s ease;
+    }
+    .hoodieTrack img.active{opacity:1}
+
+    .hsArrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:3;
+      width:44px; height:44px;
+      border:none; cursor:pointer;
+      border-radius:16px;
+      background: rgba(0,0,0,.45);
+      color:#fff;
+      font-weight:900;
+      font-size:22px;
+    }
+    .hsArrow:hover{background: rgba(0,0,0,.70)}
+    .hsArrow.left{left:14px}
+    .hsArrow.right{right:14px}
+
+    .hsDots{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:14px;
+      z-index:3;
+      display:flex;
+      gap:7px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+    .hsDot{
+      width:9px; height:9px;
+      border-radius:999px;
+      background: rgba(255,255,255,.35);
+      cursor:pointer;
+    }
+    .hsDot.active{background: rgba(255,255,255,.95)}
+
+    /* Thumbnails strip */
+    .hsThumbs{
+      position:absolute;
+      left:14px; right:14px;
+      bottom:56px;
+      z-index:3;
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding:8px 6px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .hsThumbs::-webkit-scrollbar{height:8px}
+    .hsThumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:999px}
+    .hsThumb{
+      width:86px; height:56px;
+      border-radius:14px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      flex:0 0 auto;
+      scroll-snap-align:start;
+      opacity:.9;
+      transition:.18s ease;
+    }
+    .hsThumb.active{
+      border-color: rgba(255,59,63,.75);
+      box-shadow: 0 10px 26px rgba(255,59,63,.18);
+      opacity:1;
+      transform:translateY(-1px);
+    }
+    .hsThumb img{width:100%; height:100%; object-fit:cover}
+
+    .hoodieInfo{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .hoodieInfo .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 12px;
+      font-weight:900;
+      width:max-content;
+    }
+    .hoodieInfo h3{
+      margin:8px 0 0;
+      font-size: clamp(22px, 2.4vw, 34px);
+      font-weight:900;
+      line-height:1.12;
+    }
+    .hoodieInfo p{
+      margin:0;
+      color: rgba(233,238,247,.75);
+      line-height:1.7;
+      font-weight:600;
+    }
+    .hoodiePrice{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:8px;
+    }
+    .hoodiePrice .p{
+      font-size:26px;
+      font-weight:900;
+      color: var(--red);
+    }
+    .hoodieActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .hoodieActions .pill{flex:1}
+    .hoodieActions .pill.red{flex:1.2}
 
     /* ===== Footer ===== */
     .footer{
@@ -399,16 +521,21 @@
     .cartActions{display:flex; gap:10px; flex-wrap:wrap}
     .cartActions .pill{flex:1}
 
+    /* Mobile */
     @media (max-width: 980px){
       nav{display:none}
       .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
       .brand{min-width:auto}
       .navRight{min-width:auto}
+      .hoodieWrap{grid-template-columns: 1fr;}
+      .hoodieSlider{min-height: 380px;}
     }
     @media (max-width: 560px){
       .grid{grid-template-columns: 1fr;}
-      .thumb,.slider{height: 210px;}
+      .thumb{height: 210px;}
       .hero{min-height:80vh}
+      .hoodieSlider{min-height: 330px;}
+      .hsThumb{width:78px; height:52px}
     }
   </style>
 </head>
@@ -429,7 +556,8 @@
 
       <nav>
         <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
+        <a href="#hoodie">Hoodies</a>
+        <a href="#shop">Street</a>
         <a href="#punjabi">Punjabi</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -455,11 +583,56 @@
     </div>
   </section>
 
+  <!-- ✅ Hoodie separate PREMIUM section -->
+  <section id="hoodie" class="hoodieSection">
+    <div class="container">
+      <div class="secHead">
+        <h2>Urban Hoodie</h2>
+        <p>Swipe / click thumbnails — premium comfort, street-ready vibe.</p>
+      </div>
+
+      <div class="hoodieWrap">
+        <div class="hoodieSlider" id="hoodieSlider">
+          <button class="hsArrow left" type="button" id="hsPrev" aria-label="Previous">‹</button>
+          <button class="hsArrow right" type="button" id="hsNext" aria-label="Next">›</button>
+
+          <div class="hoodieTrack" id="hoodieTrack"></div>
+
+          <div class="hsThumbs" id="hsThumbs"></div>
+          <div class="hsDots" id="hsDots"></div>
+        </div>
+
+        <div class="hoodieInfo">
+          <div>
+            <div class="badge">🔥 Best Seller • Street</div>
+            <h3>Urban Hoodie — Limited Stock</h3>
+            <p>
+              Soft inside, clean outside. Perfect for daily wear, winter layer, and street style.
+              Add to cart and order anytime.
+            </p>
+          </div>
+
+          <div>
+            <div class="hoodiePrice">
+              <div class="p" id="hoodiePrice">৳ 1,990</div>
+              <button class="addBtn" id="hoodieAddBtn" type="button">Add to Cart</button>
+            </div>
+            <div class="hoodieActions">
+              <a class="pill" href="#shop">View Street Items</a>
+              <button class="pill red" id="hoodieOrderBtn" type="button">Order on WhatsApp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="shop" class="section">
     <div class="container">
       <div class="secHead">
         <h2>Street Collection</h2>
-        <p>T-Shirts, Hoodies, Pants — clean fits, premium feel.</p>
+        <p>T-Shirts, Pants — clean fits, premium feel.</p>
       </div>
       <div class="grid" id="streetGrid"></div>
     </div>
@@ -516,10 +689,10 @@
   </aside>
 
   <script>
-    // ✅ Put your WhatsApp number with country code (no +). Example: 8801XXXXXXXXX
-    const WHATSAPP_NUMBER = "8801732689835";
+    // ✅ WhatsApp number with country code (no +). Example: 8801XXXXXXXXX
+    const WHATSAPP_NUMBER = "8801XXXXXXXXX";
 
-    // ✅ EXACT file names from your repo (root)
+    // ✅ Hoodie file names (spaces সহ as-is). Code will encode them.
     const HOODIE_SLIDES = [
       "hoodie jpg 01 (1).jpeg",
       "hoodie jpg 02.jpeg",
@@ -531,42 +704,38 @@
       "hoodie jpg 08.jpeg",
     ];
 
-    // Products
+    // ✅ Separate hoodie product (not in street cards)
+    const HOODIE_PRODUCT = { sku:"HOODIE-001", name:"Urban Hoodie", cat:"street", tag:"Street • Best Seller", price:1990 };
+
+    // ✅ Street + Punjabi products
     const products = [
       { sku:"TSHIRT-001", name:"Premium T-Shirt", cat:"street", tag:"Street • Best Seller", price:890,
         img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1400&q=80"
       },
-
-      // Urban Hoodie uses SLIDER (no single img needed here)
-      { sku:"HOODIE-001", name:"Urban Hoodie", cat:"street", tag:"Street • Best Seller", price:1990,
-        slider:true
-      },
-
       { sku:"PANTS-001", name:"Street Pants", cat:"street", tag:"Street • Clean Fit", price:1590,
         img:"https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1400&q=80"
       },
 
-      { sku:"PUNJABI-001", name:"Classic Punjabi", cat:"punjabi", tag:"Punjabi • Featured", price:2490,
-        img:"Punjabi.jpeg"
-      },
-      { sku:"PUNJABI-002", name:"Festive Punjabi", cat:"punjabi", tag:"Punjabi • Best Seller", price:2990,
-        img:"Punjabi.jpeg"
-      },
-      { sku:"PUNJABI-003", name:"Premium Punjabi", cat:"punjabi", tag:"Punjabi • Premium", price:3490,
-        img:"Punjabi.jpeg"
-      },
+      // Punjabi.jpeg must exist in repo root
+      { sku:"PUNJABI-001", name:"Classic Punjabi", cat:"punjabi", tag:"Punjabi • Featured", price:2490, img:"Punjabi.jpeg" },
+      { sku:"PUNJABI-002", name:"Festive Punjabi", cat:"punjabi", tag:"Punjabi • Best Seller", price:2990, img:"Punjabi.jpeg" },
+      { sku:"PUNJABI-003", name:"Premium Punjabi", cat:"punjabi", tag:"Punjabi • Premium", price:3490, img:"Punjabi.jpeg" },
     ];
 
-    const streetGrid = document.getElementById("streetGrid");
-    const punjabiGrid = document.getElementById("punjabiGrid");
-    const cartCountEl = document.getElementById("cartCount");
-    const cartItemsEl = document.getElementById("cartItems");
-    const cartTotalEl = document.getElementById("cartTotal");
+    // Helpers
+    const $ = (id) => document.getElementById(id);
+    const streetGrid = $("streetGrid");
+    const punjabiGrid = $("punjabiGrid");
+    const cartCountEl = $("cartCount");
+    const cartItemsEl = $("cartItems");
+    const cartTotalEl = $("cartTotal");
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const cart = new Map(); // sku -> qty
 
     function moneyBDT(n){ return "৳ " + Number(n).toLocaleString("en-US"); }
+    function safeSrc(path){ return encodeURI(path); } // spaces / () will work
 
     function updateCartCount(){
       let count = 0;
@@ -579,16 +748,16 @@
       cart.set(sku, current + 1);
       updateCartCount();
       renderCart();
-      openCart(); // smoother UX
+      openCart();
     }
 
-    function buildNormalCard(p){
+    function buildCard(p){
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
         <div class="tag">${p.tag}</div>
         <div class="thumb">
-          <img src="${p.img}" alt="${p.name}"
+          <img src="${safeSrc(p.img)}" alt="${p.name}"
                onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Image+Not+Found';">
         </div>
         <div class="cardBody">
@@ -604,123 +773,141 @@
       return div;
     }
 
-    function buildHoodieSliderCard(p){
-      const div = document.createElement("div");
-      div.className = "card";
-
-      const imgsHtml = HOODIE_SLIDES.map((src,i)=>(
-        `<img src="${src}" alt="Urban Hoodie ${i+1}" class="${i===0?'active':''}"
-              onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x800?text=Hoodie+Image+Missing';">`
-      )).join("");
-
-      const dotsHtml = HOODIE_SLIDES.map((_,i)=>(
-        `<span class="dot ${i===0?'active':''}" data-i="${i}"></span>`
-      )).join("");
-
-      div.innerHTML = `
-        <div class="tag">${p.tag}</div>
-
-        <div class="slider" data-slider="hoodie">
-          <button class="arrow left" type="button" aria-label="Previous">‹</button>
-          <button class="arrow right" type="button" aria-label="Next">›</button>
-
-          <div class="slideTrack">
-            ${imgsHtml}
-          </div>
-
-          <div class="dots">${dotsHtml}</div>
-        </div>
-
-        <div class="cardBody">
-          <p class="title">${p.name}</p>
-          <p class="meta">${p.tag}</p>
-          <div class="row">
-            <div class="price">${moneyBDT(p.price)}</div>
-            <button class="addBtn" type="button">Add</button>
-          </div>
-        </div>
-      `;
-
-      div.querySelector(".addBtn").addEventListener("click", () => addToCart(p.sku));
-
-      // slider logic
-      const images = Array.from(div.querySelectorAll(".slideTrack img"));
-      const dots = Array.from(div.querySelectorAll(".dot"));
-      const btnPrev = div.querySelector(".arrow.left");
-      const btnNext = div.querySelector(".arrow.right");
-
-      let idx = 0;
-      let timer = null;
-
-      function show(i){
-        idx = (i + images.length) % images.length;
-        images.forEach((im,k)=>im.classList.toggle("active", k===idx));
-        dots.forEach((d,k)=>d.classList.toggle("active", k===idx));
-      }
-      function next(){ show(idx+1); }
-      function prev(){ show(idx-1); }
-
-      btnNext.addEventListener("click", ()=>{ next(); restart(); });
-      btnPrev.addEventListener("click", ()=>{ prev(); restart(); });
-      dots.forEach(d=>{
-        d.addEventListener("click", ()=>{
-          show(parseInt(d.dataset.i,10));
-          restart();
-        });
-      });
-
-      function start(){
-        timer = setInterval(next, 2800);
-      }
-      function stop(){
-        if(timer) clearInterval(timer);
-        timer = null;
-      }
-      function restart(){
-        stop();
-        start();
-      }
-
-      // pause on hover
-      div.querySelector(".slider").addEventListener("mouseenter", stop);
-      div.querySelector(".slider").addEventListener("mouseleave", start);
-
-      start();
-
-      return div;
-    }
-
     function renderProducts(){
       streetGrid.innerHTML = "";
       punjabiGrid.innerHTML = "";
-
-      products.filter(p => p.cat === "street").forEach(p => {
-        if(p.slider) streetGrid.appendChild(buildHoodieSliderCard(p));
-        else streetGrid.appendChild(buildNormalCard(p));
-      });
-
-      products.filter(p => p.cat === "punjabi").forEach(p => punjabiGrid.appendChild(buildNormalCard(p)));
+      products.filter(p => p.cat === "street").forEach(p => streetGrid.appendChild(buildCard(p)));
+      products.filter(p => p.cat === "punjabi").forEach(p => punjabiGrid.appendChild(buildCard(p)));
     }
 
+    // ===== Hoodie Slider + Thumbs + Swipe =====
+    const hoodieSlider = $("hoodieSlider");
+    const hoodieTrack = $("hoodieTrack");
+    const hsDots = $("hsDots");
+    const hsThumbs = $("hsThumbs");
+    const hsPrev = $("hsPrev");
+    const hsNext = $("hsNext");
+
+    let hsIndex = 0;
+    let hsTimer = null;
+
+    function buildHoodieSlider(){
+      hoodieTrack.innerHTML = "";
+      hsDots.innerHTML = "";
+      hsThumbs.innerHTML = "";
+
+      HOODIE_SLIDES.forEach((rawSrc, i) => {
+        const src = safeSrc(rawSrc);
+
+        // main images
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Urban Hoodie " + (i + 1);
+        img.className = i === 0 ? "active" : "";
+        img.onerror = () => { img.src = "https://via.placeholder.com/1600x900?text=Hoodie+Image+Missing"; };
+        hoodieTrack.appendChild(img);
+
+        // dots
+        const dot = document.createElement("span");
+        dot.className = "hsDot" + (i === 0 ? " active" : "");
+        dot.addEventListener("click", () => { showHoodie(i); restartHoodie(); });
+        hsDots.appendChild(dot);
+
+        // thumbs
+        const th = document.createElement("div");
+        th.className = "hsThumb" + (i === 0 ? " active" : "");
+        th.innerHTML = `<img src="${src}" alt="Thumb ${i+1}"
+                          onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=No+Image';">`;
+        th.addEventListener("click", () => { showHoodie(i); restartHoodie(); });
+        hsThumbs.appendChild(th);
+      });
+    }
+
+    function showHoodie(i){
+      const imgs = Array.from(hoodieTrack.querySelectorAll("img"));
+      const dots = Array.from(hsDots.querySelectorAll(".hsDot"));
+      const thumbs = Array.from(hsThumbs.querySelectorAll(".hsThumb"));
+
+      hsIndex = (i + imgs.length) % imgs.length;
+
+      imgs.forEach((im, k) => im.classList.toggle("active", k === hsIndex));
+      dots.forEach((d, k) => d.classList.toggle("active", k === hsIndex));
+      thumbs.forEach((t, k) => t.classList.toggle("active", k === hsIndex));
+
+      // ensure active thumb visible
+      const activeThumb = thumbs[hsIndex];
+      if(activeThumb){
+        activeThumb.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+      }
+    }
+
+    function nextHoodie(){ showHoodie(hsIndex + 1); }
+    function prevHoodie(){ showHoodie(hsIndex - 1); }
+
+    function startHoodie(){ hsTimer = setInterval(nextHoodie, 3000); }
+    function stopHoodie(){ if(hsTimer) clearInterval(hsTimer); hsTimer = null; }
+    function restartHoodie(){ stopHoodie(); startHoodie(); }
+
+    hsNext.addEventListener("click", () => { nextHoodie(); restartHoodie(); });
+    hsPrev.addEventListener("click", () => { prevHoodie(); restartHoodie(); });
+
+    hoodieSlider.addEventListener("mouseenter", stopHoodie);
+    hoodieSlider.addEventListener("mouseleave", startHoodie);
+
+    // Swipe for mobile
+    let touchX = 0, touchY = 0, isSwiping = false;
+    hoodieSlider.addEventListener("touchstart", (e) => {
+      const t = e.touches[0];
+      touchX = t.clientX; touchY = t.clientY;
+      isSwiping = true;
+      stopHoodie();
+    }, {passive:true});
+
+    hoodieSlider.addEventListener("touchmove", (e) => {
+      if(!isSwiping) return;
+      const t = e.touches[0];
+      const dx = t.clientX - touchX;
+      const dy = t.clientY - touchY;
+      // only act if mostly horizontal
+      if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 14){
+        isSwiping = false;
+        if(dx < 0) nextHoodie(); else prevHoodie();
+        restartHoodie();
+      }
+    }, {passive:true});
+
+    hoodieSlider.addEventListener("touchend", () => {
+      isSwiping = false;
+      restartHoodie();
+    }, {passive:true});
+
+    $("hoodieAddBtn").addEventListener("click", () => addToCart(HOODIE_PRODUCT.sku));
+    $("hoodieOrderBtn").addEventListener("click", () => openWhatsApp());
+
     // ===== Cart Drawer =====
-    const overlay = document.getElementById("cartOverlay");
+    const overlay = $("cartOverlay");
     function openCart(){ document.body.classList.add("cartOpen"); renderCart(); }
     function closeCart(){ document.body.classList.remove("cartOpen"); }
 
-    document.getElementById("viewCartBtn").addEventListener("click", openCart);
-    document.getElementById("orderBtn").addEventListener("click", openCart);
-    document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
+    $("viewCartBtn").addEventListener("click", openCart);
+    $("orderBtn").addEventListener("click", openCart);
+    $("cartCloseBtn").addEventListener("click", closeCart);
     overlay.addEventListener("click", closeCart);
 
-    document.getElementById("clearCartBtn").addEventListener("click", () => {
+    $("clearCartBtn").addEventListener("click", () => {
       cart.clear();
       updateCartCount();
       renderCart();
     });
 
+    function productBySku(sku){
+      if(sku === HOODIE_PRODUCT.sku) return HOODIE_PRODUCT;
+      return products.find(x => x.sku === sku);
+    }
+
     function productImageForCart(p){
-      if(p.slider) return HOODIE_SLIDES[0]; // first hoodie slide for cart preview
-      return p.img;
+      if(p.sku === HOODIE_PRODUCT.sku) return safeSrc(HOODIE_SLIDES[0]);
+      return safeSrc(p.img);
     }
 
     function renderCart(){
@@ -734,7 +921,7 @@
       let total = 0;
 
       for(const [sku, qty] of cart.entries()){
-        const p = products.find(x => x.sku === sku);
+        const p = productBySku(sku);
         if(!p) continue;
 
         total += p.price * qty;
@@ -795,7 +982,7 @@
       cartTotalEl.textContent = moneyBDT(total);
     }
 
-    // ===== WhatsApp Order =====
+    // ===== WhatsApp Order (NO ALERT) =====
     function buildOrderMessage(){
       if(cart.size === 0) return "Hello! I want to place an order from RedBull Clothing.";
 
@@ -803,7 +990,7 @@
       let total = 0;
 
       for(const [sku, qty] of cart.entries()){
-        const p = products.find(x => x.sku === sku);
+        const p = productBySku(sku);
         if(!p) continue;
         total += p.price * qty;
         lines.push(`• ${p.name} (${p.sku}) x ${qty} = ${moneyBDT(p.price * qty)}`);
@@ -820,13 +1007,17 @@
       window.open(url, "_blank");
     }
 
-    document.getElementById("checkoutBtn").addEventListener("click", openWhatsApp);
-    document.getElementById("orderWhatsAppBtn").addEventListener("click", openWhatsApp);
+    $("checkoutBtn").addEventListener("click", openWhatsApp);
+    $("orderWhatsAppBtn").addEventListener("click", openWhatsApp);
 
     // Init
     renderProducts();
     updateCartCount();
     renderCart();
+    $("hoodiePrice").textContent = moneyBDT(HOODIE_PRODUCT.price);
+
+    buildHoodieSlider();
+    startHoodie();
   </script>
 
 </body>
